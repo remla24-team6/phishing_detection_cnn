@@ -6,6 +6,7 @@ import os
 
 output_path = os.path.join('output', 'tokenized')
 
+
 def preprocess():
     train = [line.strip() for line in open("data/DL Dataset/train.txt", "r").readlines()[1:]]
     raw_x_train = [line.split("\t")[1] for line in train]
