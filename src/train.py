@@ -1,29 +1,32 @@
-from model import model
-import yaml
-import pickle
+from model import build_cnn_model
+from utils import load_from_pickle_file, load_training_params
+
 
 def train():
-    model.compile(loss=params['loss_function'], optimizer=params['optimizer'], metrics=['accuracy'])
+    """Loads the precrocessed data and performs the model training.
+    """
+    params = load_training_params()
+    model = build_cnn_model(params=params)
+    model.compile(
+        loss=params["loss_function"],
+        optimizer=params["optimizer"],
+        metrics=["accuracy"],
+    )
 
-    with open('output/tokenized/x_train.pkl', 'rb') as f:
-        x_train = pickle.load(f)
-    with open('output/tokenized/y_train.pkl', 'rb') as f:
-        y_train = pickle.load(f)
-    with open('output/tokenized/x_val.pkl', 'rb') as f:
-        x_val = pickle.load(f)
-    with open('output/tokenized/y_val.pkl', 'rb') as f:
-        y_val = pickle.load(f)
+    x_train, y_train = load_from_pickle_file(pickle_path="output/tokenized/train.pkl")
+    x_val, y_val = load_from_pickle_file(pickle_path="output/tokenized/val.pkl")
 
-    hist = model.fit(x_train[:10000], y_train[:10000],
-                    batch_size=params['batch_train'],
-                    epochs=params['epoch'],
-                    shuffle=True,
-                    validation_data=(x_val[:10000], y_val[:10000])
-                    )
+    hist = model.fit(
+        x_train[:10000],
+        y_train[:10000],
+        batch_size=params["batch_train"],
+        epochs=params["epoch"],
+        shuffle=True,
+        validation_data=(x_val[:10000], y_val[:10000]),
+    )
 
-    model.save('output/model.keras')
+    model.save("output/model.keras")
+
 
 if __name__ == "__main__":
-    with open('training_params.yaml', 'r') as file:
-        params = yaml.safe_load(file)
     train()

@@ -1,16 +1,16 @@
-import pickle
 import numpy as np
 import seaborn as sns
 from tensorflow.keras.models import load_model
-from sklearn.metrics import classification_report, confusion_matrix,accuracy_score
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from utils import load_from_pickle_file
+
 
 def test():
-    with open('output/tokenized/x_test.pkl', 'rb') as f:
-        x_test = pickle.load(f)
-    with open('output/tokenized/y_test.pkl', 'rb') as f:
-        y_test = pickle.load(f)
+    """Performs the testing of the trained model.
+    """
 
-    model = load_model('output/model.keras')
+    x_test, y_test = load_from_pickle_file("output/tokenized/test.pkl")
+    model = load_model("output/model.keras")
 
     y_pred = model.predict(x_test[:10000], batch_size=1000)
 
@@ -19,15 +19,15 @@ def test():
 
     # Calculate classification report
     report = classification_report(y_test, y_pred_binary)
-    print('Classification Report:')
-    print(report)
+    print(f"Classification Report:\n{report}")
 
     # Calculate confusion matrix
     confusion_mat = confusion_matrix(y_test, y_pred_binary)
-    print('Confusion Matrix:', confusion_mat)
-    print('Accuracy:', accuracy_score(y_test, y_pred_binary))
+    print(f"Confusion Matrix:\n{confusion_mat}")
+    print(f"Accuracy: {accuracy_score(y_test, y_pred_binary)}")
 
     sns.heatmap(confusion_mat, annot=True)
+
 
 if __name__ == "__main__":
     test()
