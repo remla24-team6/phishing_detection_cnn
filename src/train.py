@@ -25,7 +25,7 @@ def train():
         validation_data=(x_val[:10000], y_val[:10000]),
     )
 
-    model.save("output/model.keras")
+    model.save("model/model.keras")
 
 
 if __name__ == "__main__":
