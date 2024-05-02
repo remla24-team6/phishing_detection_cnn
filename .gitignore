@@ -1,5 +1,7 @@
 data/
 output/
-/output
-/data
-/model
+venv/*
+.dvc/*
+.idea/*
+*.pkl
+*.txt

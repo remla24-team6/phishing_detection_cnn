@@ -1,0 +1,19 @@
+stages:
+  get_data:
+    cmd: python src/get_data.py
+    deps:
+    - src/get_data.py
+    outs:
+    - data
+  preprocessing:
+    cmd: python src/preprocessing.py
+    deps:
+    - src/preprocessing.py
+    outs:
+    - output
+  train:
+    cmd: python src/train.py
+    deps:
+    - src/train.py
+    outs:
+    - model
