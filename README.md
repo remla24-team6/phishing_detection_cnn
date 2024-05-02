@@ -8,6 +8,7 @@ This is the final project for group 6 for CS4295-Release Engineering for Machine
 - [ ] Set up remote DVC artefact repository.
 - [ ] Set DVC metrics and experiment tracking.
 - [ ] Set up pylint
+- [ ] Set up Flake8
 - [ ] Set up a static code formatter
 - [ ] Update README with running instructions
 - [ ] Document design decisions.
