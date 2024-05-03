@@ -1,5 +1,11 @@
+# Ignore virtual environments
+.env
+
+
+# Ignore data files
 data/
 output/
 /output
 /data
 /model
+
