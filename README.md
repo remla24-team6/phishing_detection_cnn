@@ -19,3 +19,21 @@ This is the final project for group 6 for CS4295-Release Engineering for Machine
 - [ ] Set up a static code formatter
 - [ ] Update README with running instructions
 - [ ] Document design decisions.
+
+
+# Commands
+
+To run pylint:
+```
+pylint <file/dir> > reports/output.txt
+```
+
+To run autopep8:
+```
+autopep8 --in-place --aggressive --recursive <file/dir>
+```
+
+To run flake8:
+```
+flake <file/dir>
+```

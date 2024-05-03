@@ -46,7 +46,7 @@ limit-inference-results=100
 
 # List of plugins (as comma separated values of python module names) to load,
 # usually to register additional checkers.
-load-plugins=
+load-plugins=pylint_report
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -90,7 +90,12 @@ disable=raw-checker-failed,
         suppressed-message,
         useless-suppression,
         deprecated-pragma,
-        use-symbolic-message-instead
+        use-symbolic-message-instead,
+        missing-module-docstring,
+        no-name-in-module,
+        import-error
+        
+
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -118,7 +123,7 @@ evaluation=max(0, 0 if fatal else 10.0 - ((float(5 * error + warning + refactor 
 output-format=text
 
 # Tells whether to display a full report or only the messages.
-reports=no
+reports=yes
 
 # Activate the evaluation score.
 score=yes
@@ -285,7 +290,7 @@ indent-after-paren=4
 indent-string='    '
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=150
 
 # Maximum number of lines in a module.
 max-module-lines=1000
@@ -515,7 +520,7 @@ max-bool-expr=5
 max-branches=12
 
 # Maximum number of locals for function / method body.
-max-locals=15
+max-locals=25
 
 # Maximum number of parents for a class (see R0901).
 max-parents=7
@@ -553,6 +558,9 @@ deprecated-modules=
 # Output a graph (.gv or any supported image format) of external dependencies
 # to the given file (report RP0402 must not be disabled).
 ext-import-graph=
+
+# Specify that tensorflow should be ignored as it is not supported by Pylint
+ignored-modules=tensorflow,tensorflow.keras,tensorflow.keras.models
 
 # Output a graph (.gv or any supported image format) of all (i.e. internal and
 # external) dependencies to the given file (report RP0402 must not be

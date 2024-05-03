@@ -1,3 +1,7 @@
+"""
+    Method to train the model.
+"""
+
 from model import build_cnn_model
 from utils import load_from_pickle_file, load_training_params
 
@@ -16,7 +20,7 @@ def train():
     x_train, y_train = load_from_pickle_file(pickle_path="output/tokenized/train.pkl")
     x_val, y_val = load_from_pickle_file(pickle_path="output/tokenized/val.pkl")
 
-    hist = model.fit(
+    _ = model.fit(
         x_train[:10000],
         y_train[:10000],
         batch_size=params["batch_train"],

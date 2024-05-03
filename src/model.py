@@ -1,12 +1,16 @@
+"""
+Create CNN model.
+"""
+
+from typing import Any, Dict
 from keras.models import Sequential
 from keras.layers import Embedding, Conv1D, MaxPooling1D, Flatten, Dense, Dropout
-from typing import Any, Dict
 from utils import load_from_pickle_file
 
 
 def build_cnn_model(params: Dict[str, Any]) -> Sequential:
     """Builds the CNN model for phissing detection.
-    
+
     Args:
         params (Dict[str, Any]): The laoded training parameters
 
