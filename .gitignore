@@ -1,6 +1,6 @@
 # Ignore virtual environments
 .env
-
+venv/*
 
 # Ignore data files
 data/
@@ -9,3 +9,11 @@ output/
 /data
 /model
 
+# Ignore dvc 
+.dvc/*
+
+
+# Ignore other
+.idea/*
+*.pkl
+*.txt
