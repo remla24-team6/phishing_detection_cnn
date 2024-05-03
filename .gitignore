@@ -8,7 +8,7 @@ output/
 /output
 /data
 /model
-
+*/__pycache__
 # Ignore dvc 
 .dvc/*
 
@@ -17,3 +17,4 @@ output/
 .idea/*
 *.pkl
 *.txt
+
