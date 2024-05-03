@@ -31,7 +31,7 @@ def load_dataset(data_path: str) -> Tuple[List[str], List[str]]:
     print(f"Loading dataset: {data_path}")
 
     try:
-        with open(data_path, "r", encoding="utf-8") as data_file:
+        with open(data_path, "r") as data_file:
             loaded_data = [line.strip() for line in data_file.readlines()[1:]]
     except IOError as err:
         print(f"Error: {err}")

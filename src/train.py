@@ -1,9 +1,13 @@
 """
     Method to train the model.
 """
-
+import os
 from model import build_cnn_model
 from utils import load_from_pickle_file, load_training_params
+
+
+DEFAULT_DIRECTORY = "model/"
+DEFAULT_FILENAME = "model.keras"
 
 
 def train():
@@ -29,7 +33,10 @@ def train():
         validation_data=(x_val[:10000], y_val[:10000]),
     )
 
-    model.save("model/model.keras")
+    if not os.path.exists(DEFAULT_DIRECTORY):
+        os.makedirs(DEFAULT_DIRECTORY)
+
+    model.save(DEFAULT_DIRECTORY + DEFAULT_FILENAME)
 
 
 if __name__ == "__main__":

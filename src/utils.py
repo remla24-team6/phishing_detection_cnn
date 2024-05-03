@@ -18,7 +18,7 @@ def load_training_params() -> Dict[str, Any]:
         Dict[str, Any]: Returns the training params as a dictionary.
     """
     try:
-        with open('training_params.yaml', 'r', encoding='utf-8') as file:
+        with open('training_params.yaml', 'r') as file:
             params = yaml.safe_load(file)
     except BaseException as exception:
         raise FileNotFoundError("Could not find file training_params.yaml.") from exception
@@ -36,7 +36,7 @@ def load_from_pickle_file(pickle_path: str) -> Any:
         Any: Returns the loaded object.
     """
     try:
-        with open(pickle_path, 'rb', encoding='ASCII') as file:
+        with open(pickle_path, 'rb') as file:
             loaded_file = pickle.load(file)
     except BaseException as exception:
         raise FileNotFoundError(f"Could not find file {pickle_path}.") from exception
@@ -55,5 +55,5 @@ def save_to_pickle_file(obj: Any, pickle_path: str) -> Any:
         Any: Returns the loaded object.
     """
 
-    with open(pickle_path, 'wb', encoding='ASCII') as file:
+    with open(pickle_path, 'wb') as file:
         pickle.dump(obj, file)
