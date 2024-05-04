@@ -9,8 +9,8 @@ def test():
     """Performs the testing of the trained model.
     """
 
-    x_test, y_test = load_from_pickle_file("output/tokenized/test.pkl")
-    model = load_model("output/model.keras")
+    x_test, y_test = load_from_pickle_file("data/tokenized/test.pkl")
+    model = load_model("model/model.keras")
 
     y_pred = model.predict(x_test[:10000], batch_size=1000)
 

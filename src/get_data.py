@@ -1,4 +1,5 @@
 from kaggle.api.kaggle_api_extended import KaggleApi
+import os
 
 DATA_FOLDER = "data"
 DATA_URL = "aravindhannamalai/dl-dataset"
@@ -11,6 +12,8 @@ def get_data():
     api = KaggleApi()
     api.authenticate()
     # This url refers to the guy that initially uploaded the dataset.
+    if not os.path.exists(DATA_FOLDER):
+        os.makedirs(DATA_FOLDER)
     dataset = api.dataset_download_files(DATA_URL, path=DATA_FOLDER, unzip=True)
     print(dataset)
     return dataset
