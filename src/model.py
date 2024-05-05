@@ -16,7 +16,7 @@ def build_cnn_model(params: Dict[str, Any]) -> Sequential:
 
     model = Sequential()
 
-    char_index = load_from_pickle_file(pickle_path="output/tokenized/char_index.pkl")
+    char_index = load_from_pickle_file(pickle_path="data/tokenized/char_index.pkl")
 
     voc_size = len(char_index.keys())
     print(f"voc_size: {voc_size}")
