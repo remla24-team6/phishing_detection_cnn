@@ -33,8 +33,10 @@ def load_dataset(data_path: str) -> Tuple[List[str], List[str]]:
     try:
         with open(data_path, "r") as data_file:
             loaded_data = [line.strip() for line in data_file.readlines()[1:]]
-    except IOError as err:
-        print(f"Error: {err}")
+    except FileNotFoundError as file_not_found_error:
+        raise FileNotFoundError(f"Could not find file {data_path}.") from file_not_found_error
+    except OSError as exception:
+        raise OSError(f"An error occurred accessing file {data_path}: {exception}") from exception
 
     raw_x = [line.split("\t")[1] for line in loaded_data]
     raw_y = [line.split("\t")[0] for line in loaded_data]

@@ -7,7 +7,7 @@ import pickle
 import yaml
 
 
-def load_training_params() -> Dict[str, Any]:
+def load_training_params(pickle_path='training_params.yaml') -> Dict[str, Any]:
     """Loads and returns the training parameters.
 
     Raises:
@@ -18,10 +18,12 @@ def load_training_params() -> Dict[str, Any]:
         Dict[str, Any]: Returns the training params as a dictionary.
     """
     try:
-        with open('training_params.yaml', 'r') as file:
+        with open(pickle_path, 'r') as file:
             params = yaml.safe_load(file)
-    except BaseException as exception:
-        raise FileNotFoundError("Could not find file training_params.yaml.") from exception
+    except FileNotFoundError as file_not_found_error:
+        raise FileNotFoundError(f"Could not find file {pickle_path}.") from file_not_found_error
+    except OSError as exception:
+        raise OSError(f"An error occurred accessing file {pickle_path}: {exception}") from exception
 
     return params
 
@@ -38,8 +40,10 @@ def load_from_pickle_file(pickle_path: str) -> Any:
     try:
         with open(pickle_path, 'rb') as file:
             loaded_file = pickle.load(file)
-    except BaseException as exception:
-        raise FileNotFoundError(f"Could not find file {pickle_path}.") from exception
+    except FileNotFoundError as file_not_found_error:
+        raise FileNotFoundError(f"Could not find file {pickle_path}.") from file_not_found_error
+    except OSError as exception:
+        raise OSError(f"An error occurred accessing file {pickle_path}: {exception}") from exception
 
     return loaded_file
 
