@@ -4,13 +4,13 @@ metrics:
   - model/metrics.json
 stages:
   get_data:
-    cmd: poetry run python src/get_data.py
+    cmd: python src/get_data.py
     deps:
     - src/get_data.py
     outs:
     - "data/DL Dataset"
   preprocessing:
-    cmd: poetry run python src/preprocessing.py
+    cmd: python src/preprocessing.py
     deps:
     - src/preprocessing.py
     - src/utils.py
@@ -18,7 +18,7 @@ stages:
     outs:
     - data/tokenized
   train:
-    cmd: poetry run python src/train.py
+    cmd: python src/train.py
     deps:
     - src/train.py
     - src/utils.py
@@ -27,7 +27,7 @@ stages:
     outs:
     - model/model.keras
   test:
-    cmd: poetry run python src/test.py
+    cmd: python src/test.py
     deps:
     - src/test.py
     - src/utils.py
