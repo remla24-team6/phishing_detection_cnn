@@ -1,3 +1,7 @@
+"""
+    Tests the model on test data.
+"""
+
 import numpy as np
 import seaborn as sns
 from tensorflow.keras.models import load_model

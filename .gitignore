@@ -1,7 +1,21 @@
+# Ignore virtual environments
+.env
+venv/*
+
+# Ignore data files
 data/
+output/
+/output
+/data
+/model
+*/__pycache__
 model/
 venv/*
+# Ignore dvc
 .dvc/*
+
+
+# Ignore other
 .idea/*
 *.pkl
 *.txt

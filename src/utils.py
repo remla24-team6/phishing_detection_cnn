@@ -1,38 +1,49 @@
-import yaml
-import pickle
-from typing import Dict, Any
+"""
+    Utilities to load/save data.
+"""
 
-def load_training_params() -> Dict[str, Any]:
+from typing import Dict, Any
+import pickle
+import yaml
+
+
+def load_training_params(pickle_path='training_params.yaml') -> Dict[str, Any]:
     """Loads and returns the training parameters.
 
     Raises:
-        FileNotFoundError: Raising FileNotFound if training_params.yaml is not found in the root folder of the project.
+        FileNotFoundError: Raising FileNotFound if training_params.yaml is
+        not found in the root folder of the project.
 
     Returns:
         Dict[str, Any]: Returns the training params as a dictionary.
     """
     try:
-        with open('training_params.yaml', 'r') as file:
+        with open(pickle_path, 'r') as file:
             params = yaml.safe_load(file)
-    except:
-        raise FileNotFoundError("Could not find file training_params.yaml.")
+    except FileNotFoundError as file_not_found_error:
+        raise FileNotFoundError(f"Could not find file {pickle_path}.") from file_not_found_error
+    except OSError as exception:
+        raise OSError(f"An error occurred accessing file {pickle_path}: {exception}") from exception
 
     return params
+
 
 def load_from_pickle_file(pickle_path: str) -> Any:
     """Loads a pickle file into memory.
 
     Args:
         pickle_path (str): Path to pickle file
-    
+
     Returns:
         Any: Returns the loaded object.
     """
     try:
-        with open(pickle_path, 'rb') as f:
-            loaded_file = pickle.load(f)
-    except:
-        raise FileNotFoundError(f"Could not find file {pickle_path}.")
+        with open(pickle_path, 'rb') as file:
+            loaded_file = pickle.load(file)
+    except FileNotFoundError as file_not_found_error:
+        raise FileNotFoundError(f"Could not find file {pickle_path}.") from file_not_found_error
+    except OSError as exception:
+        raise OSError(f"An error occurred accessing file {pickle_path}: {exception}") from exception
 
     return loaded_file
 
@@ -43,10 +54,10 @@ def save_to_pickle_file(obj: Any, pickle_path: str) -> Any:
     Args:
         obj: (Any): The object that needs to be dumped.
         pickle_path (str): Path to pickle file where object will be stored.
-    
+
     Returns:
         Any: Returns the loaded object.
     """
-    
-    with open(pickle_path, 'wb') as f:
-        pickle.dump(obj, f)
+
+    with open(pickle_path, 'wb') as file:
+        pickle.dump(obj, file)
