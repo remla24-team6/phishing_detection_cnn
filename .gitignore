@@ -9,7 +9,9 @@ output/
 /data
 /model
 */__pycache__
-# Ignore dvc 
+model/
+venv/*
+# Ignore dvc
 .dvc/*
 
 
@@ -17,4 +19,3 @@ output/
 .idea/*
 *.pkl
 *.txt
-

@@ -1,0 +1,82 @@
+schema: '2.0'
+stages:
+  get_data:
+    cmd: python src/get_data.py
+    deps:
+    - path: src/get_data.py
+      hash: md5
+      md5: 3ba3966b605c7e917c137a535fc87f31
+      size: 737
+    outs:
+    - path: data/DL Dataset
+      hash: md5
+      md5: 48900e618890f4ce97201d1592d45045.dir
+      size: 172904892
+      nfiles: 3
+  preprocessing:
+    cmd: python src/preprocessing.py
+    deps:
+    - path: data/DL Dataset
+      hash: md5
+      md5: 48900e618890f4ce97201d1592d45045.dir
+      size: 172904892
+      nfiles: 3
+    - path: src/preprocessing.py
+      hash: md5
+      md5: c11d0713746b33f3891cdc9bb80c1fd0
+      size: 2946
+    - path: src/utils.py
+      hash: md5
+      md5: e26c6392b2c0c51ef92904a3ca3432bd
+      size: 1427
+    outs:
+    - path: data/tokenized
+      hash: md5
+      md5: c07d7f7bbabb3441977320b80dc2dc35.dir
+      size: 1555442387
+      nfiles: 4
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/tokenized
+      hash: md5
+      md5: c07d7f7bbabb3441977320b80dc2dc35.dir
+      size: 1555442387
+      nfiles: 4
+    - path: src/model.py
+      hash: md5
+      md5: 4818597d759dbb2d27c07ded8eac7248
+      size: 1571
+    - path: src/train.py
+      hash: md5
+      md5: b6b200b19d22b5007c65315ee8412714
+      size: 981
+    - path: src/utils.py
+      hash: md5
+      md5: e26c6392b2c0c51ef92904a3ca3432bd
+      size: 1427
+    outs:
+    - path: model/model.keras
+      hash: md5
+      md5: e54bf39722d80a39acbe2b6aa94bb701
+      size: 5472435
+  test:
+    cmd: python src/test.py
+    deps:
+    - path: data/tokenized
+      hash: md5
+      md5: c07d7f7bbabb3441977320b80dc2dc35.dir
+      size: 1555442387
+      nfiles: 4
+    - path: model/model.keras
+      hash: md5
+      md5: e54bf39722d80a39acbe2b6aa94bb701
+      size: 5472435
+    - path: src/test.py
+      hash: md5
+      md5: 04d56e945a477c368d595063fd399e83
+      size: 996
+    - path: src/utils.py
+      hash: md5
+      md5: e26c6392b2c0c51ef92904a3ca3432bd
+      size: 1427

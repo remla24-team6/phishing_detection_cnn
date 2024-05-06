@@ -1,0 +1,31 @@
+stages:
+  get_data:
+    cmd: python src/get_data.py
+    deps:
+    - src/get_data.py
+    outs:
+    - "data/DL Dataset"
+  preprocessing:
+    cmd: python src/preprocessing.py
+    deps:
+    - src/preprocessing.py
+    - src/utils.py
+    - "data/DL Dataset"
+    outs:
+    - data/tokenized
+  train:
+    cmd: python src/train.py
+    deps:
+    - src/train.py
+    - src/utils.py
+    - src/model.py
+    - data/tokenized
+    outs:
+    - model/model.keras
+  test:
+    cmd: python src/test.py
+    deps:
+    - src/test.py
+    - src/utils.py
+    - data/tokenized
+    - model/model.keras

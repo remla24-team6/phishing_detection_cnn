@@ -11,7 +11,7 @@ from utils import save_to_pickle_file, load_training_params
 
 MAX_SEQUENCE_LENGTH = 200
 OOV_TOKEN = "-n-"
-OUTPUT_PATH = os.path.join("output", "tokenized")
+OUTPUT_PATH = os.path.join("data", "tokenized")
 
 if not os.path.exists(OUTPUT_PATH):
     os.makedirs(OUTPUT_PATH)

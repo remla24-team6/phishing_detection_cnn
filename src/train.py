@@ -5,6 +5,9 @@ import os
 from model import build_cnn_model
 from utils import load_from_pickle_file, load_training_params
 
+MODEL_SAVE_PATH = "model"
+if not os.path.exists(MODEL_SAVE_PATH):
+    os.makedirs(MODEL_SAVE_PATH)
 
 DEFAULT_DIRECTORY = "model/"
 DEFAULT_FILENAME = "model.keras"
@@ -21,8 +24,8 @@ def train():
         metrics=["accuracy"],
     )
 
-    x_train, y_train = load_from_pickle_file(pickle_path="output/tokenized/train.pkl")
-    x_val, y_val = load_from_pickle_file(pickle_path="output/tokenized/val.pkl")
+    x_train, y_train = load_from_pickle_file(pickle_path="data/tokenized/train.pkl")
+    x_val, y_val = load_from_pickle_file(pickle_path="data/tokenized/val.pkl")
 
     _ = model.fit(
         x_train[:10000],
