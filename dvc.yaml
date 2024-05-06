@@ -4,13 +4,13 @@ stages:
     deps:
     - src/get_data.py
     outs:
-    - "data/DL Dataset"
+    - data/DL Dataset
   preprocessing:
     cmd: python src/preprocessing.py
     deps:
     - src/preprocessing.py
     - src/utils.py
-    - "data/DL Dataset"
+    - data/DL Dataset
     outs:
     - data/tokenized
   train:
@@ -29,3 +29,8 @@ stages:
     - src/utils.py
     - data/tokenized
     - model/model.keras
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step

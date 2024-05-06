@@ -49,8 +49,8 @@ stages:
       size: 1571
     - path: src/train.py
       hash: md5
-      md5: b6b200b19d22b5007c65315ee8412714
-      size: 981
+      md5: de9ce15ba86ddc81048d3c95bb25a80e
+      size: 983
     - path: src/utils.py
       hash: md5
       md5: e26c6392b2c0c51ef92904a3ca3432bd
@@ -58,7 +58,7 @@ stages:
     outs:
     - path: model/model.keras
       hash: md5
-      md5: 07c6da8e80d2663bff513846a969c9a6
+      md5: 453b9401b05687695a7c4cf77b618ece
       size: 5472435
   test:
     cmd: python src/test.py
@@ -70,12 +70,12 @@ stages:
       nfiles: 4
     - path: model/model.keras
       hash: md5
-      md5: 07c6da8e80d2663bff513846a969c9a6
+      md5: 453b9401b05687695a7c4cf77b618ece
       size: 5472435
     - path: src/test.py
       hash: md5
-      md5: 04d56e945a477c368d595063fd399e83
-      size: 996
+      md5: b5250ae59a8db3e0944d637686c1768a
+      size: 1143
     - path: src/utils.py
       hash: md5
       md5: e26c6392b2c0c51ef92904a3ca3432bd

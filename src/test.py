@@ -1,9 +1,10 @@
 import numpy as np
 import seaborn as sns
+import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from utils import load_from_pickle_file
-
+from dvclive import Live
 
 def test():
     """Performs the testing of the trained model.
@@ -26,7 +27,9 @@ def test():
     print(f"Confusion Matrix:\n{confusion_mat}")
     print(f"Accuracy: {accuracy_score(y_test, y_pred_binary)}")
 
-    sns.heatmap(confusion_mat, annot=True)
+    # Track metrics using dvclive
+    with Live() as live:
+        live.log_metric('accuracy', accuracy_score(y_test, y_pred_binary))
 
 
 if __name__ == "__main__":
