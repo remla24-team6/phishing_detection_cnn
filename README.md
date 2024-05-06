@@ -1,32 +1,44 @@
 # Description
 
-This is the final project for group 6 for CS4295-Release Engineering for Machine Learning Applications.
+This is the data pipeline repository for group 6 for CS4295-Release Engineering for Machine Learning Applications.
+
+# Pipeline design
+
+The pipeline is divided into four stages:
+
+1. Get data
+2. Preprocess
+3. Train
+4. Test
+
+Each of these stages has a respective file in the src folder. Furthermore, the `dvc.yaml` file describes the exact dependencies and outputs of these stages as well. 
+We opted to divide the pipeline into these stages because each one has a well-defined input and output and follows standard ML practices.
 
 # Setup
 
-- Create a virtual environment and run `pip install -r requirements.txt`. This should install the correct version for all dependencies and subdependencies.
+- Install Poetry using `pip install poetry`
+- Install DVC using `pip install dvc`
 - Sign up for a Kaggle account at https://www.kaggle.com. Then go to the 'Account' tab of your user profile (`https://www.kaggle.com/<username>/account`) and select 'Create API Token'. This will trigger the download of `kaggle.json`, a file containing your API credentials. Place this file in the location `~/.kaggle/kaggle.json`.
 
-# Repository TODOs
-- [X] Structure project
-- [X] Add project requirements (might need to refactor this later)
-- [X] Add notebook code in separate python modules so that they can be run as DVC stages.
-- [ ] Set up DVC pipeline
-- [ ] Set up remote DVC artefact repository.
-- [ ] Set DVC metrics and experiment tracking.
-- [X] Set up pylint
-- [X] Set up Flake8
-- [X] Set up a static code formatter
-- [ ] Update README with running instructions
-- [ ] Document design decisions.
+## Optional setup (for linters)
 
+- Install Pylint using `pip install pylint`
+- Install Flake using `pip install flake8`
 
-# Commands
+# Running instructions
+
+To run the full data pipeline, use:
+
+```
+dvc repro
+```
 
 To run pylint:
+
 ```
 pylint <file/dir> > reports/output.txt
 ```
+This should store the pylint output in `reports/output.txt`
 
 To run autopep8:
 ```
@@ -37,3 +49,7 @@ To run flake8:
 ```
 flake8 <file/dir>
 ```
+
+
+
+
