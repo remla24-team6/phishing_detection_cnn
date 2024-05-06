@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   get_data:
-    cmd: python src/get_data.py
+    cmd: poetry run python src/get_data.py
     deps:
     - path: src/get_data.py
       hash: md5
@@ -14,7 +14,7 @@ stages:
       size: 172904892
       nfiles: 3
   preprocessing:
-    cmd: python src/preprocessing.py
+    cmd: poetry run python src/preprocessing.py
     deps:
     - path: data/DL Dataset
       hash: md5
@@ -36,7 +36,7 @@ stages:
       size: 1555442387
       nfiles: 4
   train:
-    cmd: python src/train.py
+    cmd: poetry run python src/train.py
     deps:
     - path: data/tokenized
       hash: md5
@@ -58,10 +58,10 @@ stages:
     outs:
     - path: model/model.keras
       hash: md5
-      md5: bff1149ad077bc9584da71a69c680749
+      md5: c0d9b0a2574e8ea6f788a4736e770e16
       size: 5472435
   test:
-    cmd: python src/test.py
+    cmd: poetry run python src/test.py
     deps:
     - path: data/tokenized
       hash: md5
@@ -70,7 +70,7 @@ stages:
       nfiles: 4
     - path: model/model.keras
       hash: md5
-      md5: bff1149ad077bc9584da71a69c680749
+      md5: c0d9b0a2574e8ea6f788a4736e770e16
       size: 5472435
     - path: src/test.py
       hash: md5
