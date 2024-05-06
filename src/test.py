@@ -6,7 +6,7 @@ import numpy as np
 import seaborn as sns
 from tensorflow.keras.models import load_model
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-from utils import load_from_pickle_file
+from utils import load_from_pickle_file, load_from_json_file, save_to_json_file
 
 
 def test():
@@ -28,8 +28,14 @@ def test():
     # Calculate confusion matrix
     confusion_mat = confusion_matrix(y_test, y_pred_binary)
     print(f"Confusion Matrix:\n{confusion_mat}")
-    print(f"Accuracy: {accuracy_score(y_test, y_pred_binary)}")
-
+    
+    test_accruacy = accuracy_score(y_test, y_pred_binary)
+    print(f"Test Accuracy: {test_accruacy}")
+    
+    metrics = load_from_json_file("model/metrics.json")
+    metrics["test_accuracy"] = test_accruacy
+    
+    save_to_json_file(metrics, "model/metrics.json")
     sns.heatmap(confusion_mat, annot=True)
 
 

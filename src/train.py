@@ -3,7 +3,7 @@
 """
 import os
 from model import build_cnn_model
-from utils import load_from_pickle_file, load_training_params
+from utils import load_from_pickle_file, load_training_params, save_to_json_file
 
 MODEL_SAVE_PATH = "model"
 if not os.path.exists(MODEL_SAVE_PATH):
@@ -27,7 +27,7 @@ def train():
     x_train, y_train = load_from_pickle_file(pickle_path="data/tokenized/train.pkl")
     x_val, y_val = load_from_pickle_file(pickle_path="data/tokenized/val.pkl")
 
-    _ = model.fit(
+    hist = model.fit(
         x_train[:10000],
         y_train[:10000],
         batch_size=params["batch_train"],
@@ -40,6 +40,16 @@ def train():
         os.makedirs(DEFAULT_DIRECTORY)
 
     model.save(DEFAULT_DIRECTORY + DEFAULT_FILENAME)
+    
+    metrics = {
+        "train_accuracy": hist.history['accuracy'][0],
+        "train_loss": hist.history['loss'][0],
+        "val_accuracy": hist.history['val_accuracy'][0],
+        "val_loss": hist.history['val_loss'][0],
+    }
+    
+    save_to_json_file(metrics, "model/metrics.json")
+    model.save("model/model.keras")
 
 
 if __name__ == "__main__":
