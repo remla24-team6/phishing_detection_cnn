@@ -58,7 +58,7 @@ stages:
     outs:
     - path: model/model.keras
       hash: md5
-      md5: e54bf39722d80a39acbe2b6aa94bb701
+      md5: 07c6da8e80d2663bff513846a969c9a6
       size: 5472435
   test:
     cmd: python src/test.py
@@ -70,7 +70,7 @@ stages:
       nfiles: 4
     - path: model/model.keras
       hash: md5
-      md5: e54bf39722d80a39acbe2b6aa94bb701
+      md5: 07c6da8e80d2663bff513846a969c9a6
       size: 5472435
     - path: src/test.py
       hash: md5
