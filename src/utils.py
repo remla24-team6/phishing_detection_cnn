@@ -1,10 +1,10 @@
 """
     Utilities to load/save data.
 """
-
-from typing import Dict, Any
-import pickle
 import yaml
+import pickle
+import json
+from typing import Dict, Any
 
 
 def load_training_params(pickle_path='training_params.yaml') -> Dict[str, Any]:
@@ -15,7 +15,7 @@ def load_training_params(pickle_path='training_params.yaml') -> Dict[str, Any]:
         not found in the root folder of the project.
 
     Returns:
-        Dict[str, Any]: Returns the training params as a dictionary.
+        Dict[str, Any]: Returns the training params as a dictionary
     """
     try:
         with open(pickle_path, 'r') as file:
@@ -59,5 +59,30 @@ def save_to_pickle_file(obj: Any, pickle_path: str) -> Any:
         Any: Returns the loaded object.
     """
 
-    with open(pickle_path, 'wb') as file:
-        pickle.dump(obj, file)
+    with open(pickle_path, 'wb') as f:
+        pickle.dump(obj, f)
+
+def save_to_json_file(data_dict: Dict[str, Any], save_path: str):
+    """Dumps a dictionary into JSON
+
+    Args:
+        data_dict (Dict[str, Any]): The dictionary to save into a JSON file.
+        save_path (str): The path to save the JSON to.
+    """
+    with open(save_path, "w") as outfile:
+        json.dump(data_dict, outfile)
+
+def load_from_json_file(data_path: str) -> Dict[str, Any]:
+    """Loads data from a JSON file.
+
+    Args:
+        data_path (str): Path to load data from
+    
+    Returns:
+        Dict[str, Any]: Returns the loaded dictionary.
+    """
+    
+    with open(data_path, "r") as infile:
+        loaded_dict = json.load(infile)
+    
+    return loaded_dict
