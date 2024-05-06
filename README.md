@@ -11,7 +11,7 @@ The pipeline is divided into four stages:
 3. Train
 4. Test
 
-Each of these stages has a respective file in the src folder. Furthermore, the `dvc.yaml` file describes the exact dependencies and outputs of these stages as well. 
+Each of these stages has a respective file in the `src` folder. Furthermore, the `dvc.yaml` file describes the exact dependencies and outputs of these stages as well. 
 We opted to divide the pipeline into these stages because each one has a well-defined input and output and follows standard ML practices.
 
 # Setup
@@ -54,6 +54,5 @@ To run flake8:
 flake8 <file/dir>
 ```
 
-The 
 
 
