@@ -6,7 +6,7 @@ authors = ["Adit Whorra <aditwhorra@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.8"
 kaggle = "^1.6.12"
 keras = "^3.3.3"
 tensorflow = "^2.16.1"
