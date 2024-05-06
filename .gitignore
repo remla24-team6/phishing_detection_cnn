@@ -4,12 +4,9 @@ venv/*
 
 # Ignore data files
 data/
-output/
-/output
-/data
 /model
+/reports
 */__pycache__
-model/
 venv/*
 # Ignore dvc
 .dvc/*

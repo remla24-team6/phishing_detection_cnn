@@ -15,9 +15,10 @@ Each of these stages has a respective file in the src folder. Furthermore, the `
 We opted to divide the pipeline into these stages because each one has a well-defined input and output and follows standard ML practices.
 
 # Setup
-
-- Install Poetry using `pip install poetry`
-- Install DVC using `pip install dvc`
+- Create a new virtual environment called `env` using `virtualenv env`
+- Activate the virtual environment you just created using `source <path-to-env>/bin/activate`
+- Install Poetry using `pip install poetry`.
+- Install dependencies using poetry by running `poetry install`.
 - Sign up for a Kaggle account at https://www.kaggle.com. Then go to the 'Account' tab of your user profile (`https://www.kaggle.com/<username>/account`) and select 'Create API Token'. This will trigger the download of `kaggle.json`, a file containing your API credentials. Place this file in the location `~/.kaggle/kaggle.json`.
 
 ## Optional setup (for linters)
@@ -30,9 +31,12 @@ We opted to divide the pipeline into these stages because each one has a well-de
 To run the full data pipeline, use:
 
 ```
-dvc repro
+dvc exp run
 ```
-
+Once the pipeline runs, you can see the results and the metrics by running
+```
+dvc exp show
+```
 To run pylint:
 
 ```
@@ -50,6 +54,6 @@ To run flake8:
 flake8 <file/dir>
 ```
 
-
+The 
 
 
