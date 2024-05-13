@@ -59,8 +59,8 @@ def save_to_pickle_file(obj: Any, pickle_path: str) -> Any:
         Any: Returns the loaded object.
     """
 
-    with open(pickle_path, 'wb') as f:
-        pickle.dump(obj, f)
+    with open(pickle_path, 'wb') as file:
+        pickle.dump(obj, file)
 
 
 def save_to_json_file(data_dict: Dict[str, Any], save_path: str):
