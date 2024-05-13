@@ -4,9 +4,10 @@ version = "0.1.0"
 description = ""
 authors = ["Adit Whorra <aditwhorra@gmail.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.11,<3.12"
 kaggle = "^1.6.12"
 keras = "^3.3.3"
 tensorflow = "^2.16.1"
@@ -15,7 +16,11 @@ pyyaml = "^6.0.1"
 seaborn = "^0.13.2"
 dvc = "^3.50.1"
 dvc-gdrive = "^3.0.1"
-
+tensorflow-intel = { version = "^2.13.0", platform = "win32" }
+tensorflow-io-gcs-filesystem = [
+    { version = "< 0.32.0", markers = "platform_system == 'Windows'" }
+]
+ml-lib-remla = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core"]
