@@ -4,15 +4,11 @@
 
 import os
 from typing import Tuple, List
-from sklearn.preprocessing import LabelEncoder
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from utils import save_to_pickle_file, load_training_params
 
 from ml_lib_remla.preprocessing import Preprocessing
 
-MAX_SEQUENCE_LENGTH = 200
-OOV_TOKEN = "-n-"
+from utils import save_to_pickle_file, load_training_params
+
 OUTPUT_PATH = os.path.join("data", "tokenized")
 
 if not os.path.exists(OUTPUT_PATH):
@@ -51,7 +47,7 @@ def preprocess():
     and stores the preprocessed data.
     """
     params = load_training_params()
-    
+
     preprocessor = Preprocessing()
 
     raw_x_train, raw_y_train = load_dataset(

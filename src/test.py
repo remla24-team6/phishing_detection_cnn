@@ -28,13 +28,13 @@ def test():
     # Calculate confusion matrix
     confusion_mat = confusion_matrix(y_test, y_pred_binary)
     print(f"Confusion Matrix:\n{confusion_mat}")
-    
+
     test_accruacy = accuracy_score(y_test, y_pred_binary)
     print(f"Test Accuracy: {test_accruacy}")
-    
+
     metrics = load_from_json_file("model/metrics.json")
     metrics["test_accuracy"] = test_accruacy
-    
+
     save_to_json_file(metrics, "model/metrics.json")
     sns.heatmap(confusion_mat, annot=True)
 

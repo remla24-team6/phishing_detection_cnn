@@ -1,10 +1,10 @@
 """
     Utilities to load/save data.
 """
-import yaml
 import pickle
-import json
 from typing import Dict, Any
+import json
+import yaml
 
 
 def load_training_params(pickle_path='training_params.yaml') -> Dict[str, Any]:
@@ -62,6 +62,7 @@ def save_to_pickle_file(obj: Any, pickle_path: str) -> Any:
     with open(pickle_path, 'wb') as f:
         pickle.dump(obj, f)
 
+
 def save_to_json_file(data_dict: Dict[str, Any], save_path: str):
     """Dumps a dictionary into JSON
 
@@ -72,17 +73,18 @@ def save_to_json_file(data_dict: Dict[str, Any], save_path: str):
     with open(save_path, "w") as outfile:
         json.dump(data_dict, outfile)
 
+
 def load_from_json_file(data_path: str) -> Dict[str, Any]:
     """Loads data from a JSON file.
 
     Args:
         data_path (str): Path to load data from
-    
+
     Returns:
         Dict[str, Any]: Returns the loaded dictionary.
     """
-    
+
     with open(data_path, "r") as infile:
         loaded_dict = json.load(infile)
-    
+
     return loaded_dict
