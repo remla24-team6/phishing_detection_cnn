@@ -2,8 +2,8 @@
     Script to download dataset.
 """
 
-from kaggle.api.kaggle_api_extended import KaggleApi
 import os
+from kaggle.api.kaggle_api_extended import KaggleApi
 
 DATA_FOLDER = "data"
 # This url refers to the guy that initially uploaded the dataset.
@@ -23,9 +23,8 @@ def get_data():
     api.authenticate()
     if not os.path.exists(DATA_FOLDER):
         os.makedirs(DATA_FOLDER)
-    dataset = api.dataset_download_files(DATA_URL, path=DATA_FOLDER, unzip=True)
-    print(dataset)
-    return dataset
+    api.dataset_download_files(DATA_URL, path=DATA_FOLDER, unzip=True)
+
 
 if __name__ == "__main__":
     get_data()

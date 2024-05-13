@@ -40,14 +40,14 @@ def train():
         os.makedirs(DEFAULT_DIRECTORY)
 
     model.save(DEFAULT_DIRECTORY + DEFAULT_FILENAME)
-    
+
     metrics = {
         "train_accuracy": hist.history['accuracy'][0],
         "train_loss": hist.history['loss'][0],
         "val_accuracy": hist.history['val_accuracy'][0],
         "val_loss": hist.history['val_loss'][0],
     }
-    
+
     save_to_json_file(metrics, "model/metrics.json")
     model.save("model/model.keras")
 
