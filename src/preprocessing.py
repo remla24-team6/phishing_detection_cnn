@@ -9,6 +9,8 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from utils import save_to_pickle_file, load_training_params
 
+from ml_lib_remla.preprocessing import Preprocessing
+
 MAX_SEQUENCE_LENGTH = 200
 OOV_TOKEN = "-n-"
 OUTPUT_PATH = os.path.join("data", "tokenized")
@@ -49,6 +51,8 @@ def preprocess():
     and stores the preprocessed data.
     """
     params = load_training_params()
+    
+    preprocessor = Preprocessing()
 
     raw_x_train, raw_y_train = load_dataset(
         data_path=os.path.join(params["dataset_dir"], "train.txt")
@@ -60,27 +64,16 @@ def preprocess():
         data_path=os.path.join(params["dataset_dir"], "val.txt")
     )
 
-    tokenizer = Tokenizer(lower=True, char_level=True, oov_token=OOV_TOKEN)
-    tokenizer.fit_on_texts(raw_x_train + raw_x_val + raw_x_test)
-    char_index = tokenizer.word_index
+    x_train = preprocessor.tokenize_batch(raw_x_train)
+    x_test = preprocessor.tokenize_batch(raw_x_test)
+    x_val = preprocessor.tokenize_batch(raw_x_val)
 
-    x_train = pad_sequences(
-        tokenizer.texts_to_sequences(raw_x_train), maxlen=MAX_SEQUENCE_LENGTH
-    )
-    x_val = pad_sequences(
-        tokenizer.texts_to_sequences(raw_x_val), maxlen=MAX_SEQUENCE_LENGTH
-    )
-    x_test = pad_sequences(
-        tokenizer.texts_to_sequences(raw_x_test), maxlen=MAX_SEQUENCE_LENGTH
-    )
-
-    encoder = LabelEncoder()
-    y_train = encoder.fit_transform(raw_y_train)
-    y_val = encoder.transform(raw_y_val)
-    y_test = encoder.transform(raw_y_test)
+    y_train = preprocessor.encode_label_batch(raw_y_train)
+    y_test = preprocessor.encode_label_batch(raw_y_test)
+    y_val = preprocessor.encode_label_batch(raw_y_val)
 
     save_to_pickle_file(
-        obj=char_index, pickle_path=os.path.join(OUTPUT_PATH, "char_index.pkl")
+        obj=preprocessor.tokenizer.word_index, pickle_path=os.path.join(OUTPUT_PATH, "char_index.pkl")
     )
     save_to_pickle_file(
         obj=(x_train, y_train), pickle_path=os.path.join(OUTPUT_PATH, "train.pkl")

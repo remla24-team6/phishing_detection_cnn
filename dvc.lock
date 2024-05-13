@@ -1,12 +1,12 @@
 schema: '2.0'
 stages:
   get_data:
-    cmd: poetry run python src/get_data.py
+    cmd: python src/get_data.py
     deps:
     - path: src/get_data.py
       hash: md5
-      md5: 46f17364cc57d2489dec78507460b19e
-      size: 819
+      md5: 4db1a4732e532e4a698d7a21e5f95634
+      size: 850
     outs:
     - path: data/DL Dataset
       hash: md5
@@ -14,7 +14,7 @@ stages:
       size: 172904892
       nfiles: 3
   preprocessing:
-    cmd: poetry run python src/preprocessing.py
+    cmd: python src/preprocessing.py
     deps:
     - path: data/DL Dataset
       hash: md5
@@ -23,60 +23,60 @@ stages:
       nfiles: 3
     - path: src/preprocessing.py
       hash: md5
-      md5: d002e54755fa7b7d74b56eaae2b02de3
-      size: 3341
+      md5: 249d6b77456846bb4822ade2bd19b2bf
+      size: 3203
     - path: src/utils.py
       hash: md5
-      md5: 5d2aab685a4af3394d3cb7c55feee7c5
-      size: 2588
+      md5: 4b4eb514019c210b9cdc1bf6f744e171
+      size: 2676
     outs:
     - path: data/tokenized
       hash: md5
-      md5: c07d7f7bbabb3441977320b80dc2dc35.dir
-      size: 1555442387
+      md5: 27bd978ea0da606850309c5808e7380a.dir
+      size: 1547742081
       nfiles: 4
   train:
-    cmd: poetry run python src/train.py
+    cmd: python src/train.py
     deps:
     - path: data/tokenized
       hash: md5
-      md5: c07d7f7bbabb3441977320b80dc2dc35.dir
-      size: 1555442387
+      md5: 27bd978ea0da606850309c5808e7380a.dir
+      size: 1547742081
       nfiles: 4
     - path: src/model.py
       hash: md5
-      md5: 03187880ff9d400f44d2382634e83327
-      size: 1594
+      md5: e1bfec2a957059eaf1c35d1f78a0f2b9
+      size: 1653
     - path: src/train.py
       hash: md5
-      md5: e06d6a2267f297f88449643f42a31d6c
-      size: 1535
+      md5: 89311b6711c4d2037238eef9e1eeb58d
+      size: 1591
     - path: src/utils.py
       hash: md5
-      md5: 5d2aab685a4af3394d3cb7c55feee7c5
-      size: 2588
+      md5: 4b4eb514019c210b9cdc1bf6f744e171
+      size: 2676
     outs:
     - path: model/model.keras
       hash: md5
-      md5: c0d9b0a2574e8ea6f788a4736e770e16
+      md5: b4420c6b0d76221bea05539ded98d1c0
       size: 5472435
   test:
-    cmd: poetry run python src/test.py
+    cmd: python src/test.py
     deps:
     - path: data/tokenized
       hash: md5
-      md5: c07d7f7bbabb3441977320b80dc2dc35.dir
-      size: 1555442387
+      md5: 27bd978ea0da606850309c5808e7380a.dir
+      size: 1547742081
       nfiles: 4
     - path: model/model.keras
       hash: md5
-      md5: c0d9b0a2574e8ea6f788a4736e770e16
+      md5: b4420c6b0d76221bea05539ded98d1c0
       size: 5472435
     - path: src/test.py
       hash: md5
-      md5: 5a196b3f7071404ca189028161a7f6dd
-      size: 1286
+      md5: 5ec204e634e874bad19886ead087273d
+      size: 1329
     - path: src/utils.py
       hash: md5
-      md5: 5d2aab685a4af3394d3cb7c55feee7c5
-      size: 2588
+      md5: 4b4eb514019c210b9cdc1bf6f744e171
+      size: 2676
