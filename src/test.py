@@ -3,11 +3,9 @@
 """
 
 import numpy as np
-import seaborn as sns
 from tensorflow.keras.models import load_model
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, roc_auc_score, recall_score, f1_score, precision_score
+from sklearn.metrics import accuracy_score, roc_auc_score, recall_score, f1_score, precision_score
 from utils import load_from_pickle_file, load_from_json_file, save_to_json_file
-
 
 
 def test():
@@ -24,7 +22,7 @@ def test():
 
     metrics = load_from_json_file("reports/metrics.json")
 
-    test_accuracy= accuracy_score(y_test, y_pred_binary)
+    test_accuracy = accuracy_score(y_test, y_pred_binary)
     print(f"Test Accuracy: {test_accuracy}")
     metrics["test_accuracy"] = test_accuracy
     avg_precision = precision_score(y_test, y_pred_binary)
@@ -39,7 +37,7 @@ def test():
     roc_auc = roc_auc_score(y_test, y_pred_binary)
     print(f"Test roc_auc: {roc_auc}")
     metrics["roc_auc"] = roc_auc
-    
+
     save_to_json_file(metrics, "reports/metrics.json")
 
 
