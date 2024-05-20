@@ -14,18 +14,18 @@ stages:
       size: 172904892
       nfiles: 3
   preprocessing:
-    cmd: python src/preprocessing.py
+    cmd: python src/build_features.py
     deps:
     - path: data/DL Dataset
       hash: md5
       md5: 48900e618890f4ce97201d1592d45045.dir
       size: 172904892
       nfiles: 3
-    - path: src/preprocessing.py
+    - path: src/build_features.py
       hash: md5
-      md5: 4fd91c93235a8e9ab773f66f803ff417
-      size: 2981
-    - path: src/utils.py
+      md5: 5f55246740083d2d74a4fc817226d1b1
+      size: 2957
+    - path: src/utils/io.py
       hash: md5
       md5: a773d5dfa053238994641f7d5eb7a2b0
       size: 2674
@@ -45,20 +45,20 @@ stages:
       nfiles: 4
     - path: src/model.py
       hash: md5
-      md5: e1bfec2a957059eaf1c35d1f78a0f2b9
-      size: 1653
+      md5: 403d2c599c125a20c768be6cccb30e45
+      size: 1637
     - path: src/train.py
       hash: md5
-      md5: be2b706be06bddb10df2032da7877e52
-      size: 1583
-    - path: src/utils.py
+      md5: ba942767099492f8992f05c37206de6d
+      size: 1586
+    - path: src/utils/io.py
       hash: md5
       md5: a773d5dfa053238994641f7d5eb7a2b0
       size: 2674
     outs:
     - path: model/model.keras
       hash: md5
-      md5: ccb6431e1e8a24506c82fbabadc54b59
+      md5: 13c09e1177790bcf1cb475c57d268fae
       size: 5472435
   test:
     cmd: python src/test.py
@@ -70,13 +70,26 @@ stages:
       nfiles: 4
     - path: model/model.keras
       hash: md5
-      md5: ccb6431e1e8a24506c82fbabadc54b59
+      md5: 13c09e1177790bcf1cb475c57d268fae
       size: 5472435
     - path: src/test.py
       hash: md5
-      md5: b03cf8095db5a1568bb8d48bb98129ae
-      size: 1579
-    - path: src/utils.py
+      md5: ede8e09b519705fb64856fdebe265583
+      size: 1513
+    - path: src/utils/io.py
       hash: md5
       md5: a773d5dfa053238994641f7d5eb7a2b0
       size: 2674
+  make_dataset:
+    cmd: python src/data/make_dataset.py
+    deps:
+    - path: src/data/make_dataset.py
+      hash: md5
+      md5: 20b6c639e46e1293b76935ff30c09a52
+      size: 802
+    outs:
+    - path: data/DL Dataset
+      hash: md5
+      md5: 48900e618890f4ce97201d1592d45045.dir
+      size: 172904892
+      nfiles: 3

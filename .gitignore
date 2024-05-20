@@ -1,6 +1,7 @@
 # Ignore virtual environments
 .env
 venv/*
+.venv/*
 
 # Ignore data files
 data/
@@ -14,4 +15,3 @@ venv/*
 # Ignore other
 .idea/*
 *.pkl
-*.txt

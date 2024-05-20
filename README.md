@@ -126,3 +126,8 @@ We use [Pylint](https://pypi.org/project/pylint/) to check for errors in our cod
 
 Additionaly, we use flake8 as a linter as it also includes complexity analysis.
 
+#### Pylint configuration
+Pylint was configured to accept common ML naming (i.e., X_train, X_test). 
+
+
+

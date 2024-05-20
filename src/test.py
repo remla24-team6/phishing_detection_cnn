@@ -5,7 +5,7 @@
 import numpy as np
 from tensorflow.keras.models import load_model
 from sklearn.metrics import accuracy_score, roc_auc_score, recall_score, f1_score, precision_score
-from utils import load_from_pickle_file, load_from_json_file, save_to_json_file
+from utils.io import load_from_pickle_file, load_from_json_file, save_to_json_file
 
 
 def test():
