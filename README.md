@@ -1,3 +1,5 @@
+
+
 # Description
 
 This is the data pipeline repository for group 6 for CS4295-Release Engineering for Machine Learning Applications.
@@ -55,6 +57,7 @@ To run flake8:
 flake8 <file/dir>
 ```
 
+
 ### Project structure
 ``` console
 │   .flake8
@@ -94,3 +97,6 @@ flake8 <file/dir>
 ```
 
 
+### Model performance
+
+[![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=Accuracy&url=https://github.com/remla24-team6/phishing_detection_cnn/blob/feedback/reports/metrics.json&query=test_accuracy)](https://github.com/remla24-team6/phishing_detection_cnn/blob/feedback/reports/metrics.json)  
