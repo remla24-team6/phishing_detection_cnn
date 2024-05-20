@@ -23,8 +23,9 @@ We opted to divide the pipeline into these stages because each one has a well-de
 
 ## Optional setup (for linters)
 
-- Install Pylint using `pip install pylint`
-- Install Flake using `pip install flake8`
+- Install Pylint using `pip install pylint`.
+- Install Flake using `pip install flake8`.
+- Install Autopep8 using `pip install autopep8`.
 
 # Running instructions
 
@@ -54,5 +55,42 @@ To run flake8:
 flake8 <file/dir>
 ```
 
+### Project structure
+``` console
+│   .flake8
+│   .gitignore
+│   dvc.lock
+│   dvc.yaml
+│   poetry.lock
+│   pylintrc
+│   pyproject.toml
+│   README.md
+│   training_params.yaml
+│
+├───data
+│   ├───DL Dataset
+│   │       test.txt
+│   │       train.txt
+│   │       val.txt
+│   │
+│   └───tokenized
+│           char_index.pkl
+│           test.pkl
+│           train.pkl
+│           val.pkl
+│
+├───model
+│       metrics.json
+│       model.keras
+│
+└───src
+        get_data.py
+        model.py
+        preprocessing.py
+        test.py
+        train.py
+        utils.py
+        __init__.py
+```
 
 

@@ -1,7 +1,7 @@
 params:
   - training_params.yaml
 metrics:
-  - model/metrics.json
+  - reports/metrics.json
 stages:
   get_data:
     cmd: python src/get_data.py
