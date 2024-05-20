@@ -108,3 +108,22 @@ flake8 <file/dir>
 [![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=F-measure&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/feedback/reports/metrics.json&query=avg_f1)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/feedback/reports/metrics.json) 
 
 [![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=ROCAUC&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/feedback/reports/metrics.json&query=roc_auc)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/feedback/reports/metrics.json) 
+
+
+
+## Project Decisions
+
+Below, we outline the decisions with regards to the set up and structure of our project.
+
+#### Project structure
+
+We use the standard [Cookiecutter](https://drivendata.github.io/cookiecutter-data-science/) to ease the creation of directories and configuration filese.
+
+### Package management
+We use [Poetry](https://python-poetry.org/) as our dependency management tool. Poetry ensures that users with different environments use the same versions of dependencies. 
+
+### Linters
+We use [Pylint](https://pypi.org/project/pylint/) to check for errors in our codebase, enforce a coding standard among our project, and look for bad code smells [^1] https://docs.pylint.org/intro.html#what-is-pylint.
+
+Additionaly, we use flake8 as a linter as it also includes complexity analysis.
+
