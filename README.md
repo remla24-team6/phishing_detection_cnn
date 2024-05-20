@@ -116,7 +116,6 @@ flake8 <file/dir>
 Below, we outline the decisions with regards to the set up and structure of our project.
 
 #### Project structure
-
 We use the standard [Cookiecutter](https://drivendata.github.io/cookiecutter-data-science/) to ease the creation of directories and configuration filese.
 
 ### Package management
