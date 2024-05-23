@@ -21,6 +21,7 @@ tensorflow-io-gcs-filesystem = [
     { version = "< 0.32.0", markers = "platform_system == 'Windows'" }
 ]
 ml-lib-remla = "^1.0.0"
+pylint = "^3.2.2"
 
 [build-system]
 requires = ["poetry-core"]

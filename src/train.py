@@ -3,7 +3,7 @@
 """
 import os
 from model import build_cnn_model
-from utils import load_from_pickle_file, load_training_params, save_to_json_file
+from utils.io import load_from_pickle_file, load_training_params, save_to_json_file
 
 MODEL_SAVE_PATH = "model"
 if not os.path.exists(MODEL_SAVE_PATH):

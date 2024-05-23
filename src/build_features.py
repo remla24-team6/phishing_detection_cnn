@@ -7,7 +7,7 @@ from typing import Tuple, List
 
 from ml_lib_remla.preprocessing import Preprocessing
 
-from utils import save_to_pickle_file, load_training_params
+from utils import io
 
 OUTPUT_PATH = os.path.join("data", "tokenized")
 
@@ -46,7 +46,7 @@ def preprocess():
     """Reads in the raw data for all the splits, preprocesses the raw data (tokenising the sentences and encoding the labels)
     and stores the preprocessed data.
     """
-    params = load_training_params()
+    params = io.load_training_params()
 
     preprocessor = Preprocessing()
 
@@ -68,16 +68,16 @@ def preprocess():
     y_test = preprocessor.encode_label_batch(raw_y_test)
     y_val = preprocessor.encode_label_batch(raw_y_val)
 
-    save_to_pickle_file(
+    io.save_to_pickle_file(
         obj=preprocessor.tokenizer.word_index, pickle_path=os.path.join(OUTPUT_PATH, "char_index.pkl")
     )
-    save_to_pickle_file(
+    io.save_to_pickle_file(
         obj=(x_train, y_train), pickle_path=os.path.join(OUTPUT_PATH, "train.pkl")
     )
-    save_to_pickle_file(
+    io.save_to_pickle_file(
         obj=(x_val, y_val), pickle_path=os.path.join(OUTPUT_PATH, "val.pkl")
     )
-    save_to_pickle_file(
+    io.save_to_pickle_file(
         obj=(x_test, y_test), pickle_path=os.path.join(OUTPUT_PATH, "test.pkl")
     )
 

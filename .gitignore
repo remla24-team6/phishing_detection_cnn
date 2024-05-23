@@ -1,11 +1,11 @@
 # Ignore virtual environments
 .env
 venv/*
+.venv/*
 
 # Ignore data files
 data/
 /model
-/reports
 */__pycache__
 venv/*
 # Ignore dvc
@@ -15,4 +15,3 @@ venv/*
 # Ignore other
 .idea/*
 *.pkl
-*.txt
