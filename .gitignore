@@ -6,7 +6,7 @@ venv/*
 # Ignore data files
 data/
 /model
-*/__pycache__
+**/__pycache__
 venv/*
 # Ignore dvc
 .dvc/*

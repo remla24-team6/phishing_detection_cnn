@@ -25,5 +25,13 @@ pylint = "^3.2.2"
 pytest = "^8.2.1"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core", "hatchling"]
 build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "PACKAGENAME"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
