@@ -14,21 +14,21 @@ stages:
       size: 172904892
       nfiles: 3
   preprocessing:
-    cmd: python src/build_features.py
+    cmd: python src/features/build_features.py
     deps:
     - path: data/DL Dataset
       hash: md5
       md5: 48900e618890f4ce97201d1592d45045.dir
       size: 172904892
       nfiles: 3
-    - path: src/build_features.py
-      hash: md5
-      md5: 5f55246740083d2d74a4fc817226d1b1
-      size: 2957
-    - path: src/utils/io.py
+    - path: src/common/utils.py
       hash: md5
       md5: a773d5dfa053238994641f7d5eb7a2b0
       size: 2674
+    - path: src/features/build_features.py
+      hash: md5
+      md5: b9ace81a2f52c279d124f554458c38c2
+      size: 2616
     outs:
     - path: data/tokenized
       hash: md5
@@ -43,22 +43,22 @@ stages:
       md5: 27bd978ea0da606850309c5808e7380a.dir
       size: 1547742081
       nfiles: 4
-    - path: src/model.py
-      hash: md5
-      md5: 403d2c599c125a20c768be6cccb30e45
-      size: 1637
-    - path: src/train.py
-      hash: md5
-      md5: ba942767099492f8992f05c37206de6d
-      size: 1586
-    - path: src/utils/io.py
+    - path: src/common/utils.py
       hash: md5
       md5: a773d5dfa053238994641f7d5eb7a2b0
       size: 2674
+    - path: src/models/model.py
+      hash: md5
+      md5: eb5a9d11fae31b793c3bf15b443c0bcb
+      size: 1643
+    - path: src/train.py
+      hash: md5
+      md5: 3d4324c99ff0e60dba30a369e083328b
+      size: 1597
     outs:
     - path: model/model.keras
       hash: md5
-      md5: 13c09e1177790bcf1cb475c57d268fae
+      md5: fed4b2f27a35d575086804d1090e2772
       size: 5472435
   test:
     cmd: python src/test.py
@@ -70,16 +70,16 @@ stages:
       nfiles: 4
     - path: model/model.keras
       hash: md5
-      md5: 13c09e1177790bcf1cb475c57d268fae
+      md5: fed4b2f27a35d575086804d1090e2772
       size: 5472435
-    - path: src/test.py
-      hash: md5
-      md5: ede8e09b519705fb64856fdebe265583
-      size: 1513
-    - path: src/utils/io.py
+    - path: src/common/utils.py
       hash: md5
       md5: a773d5dfa053238994641f7d5eb7a2b0
       size: 2674
+    - path: src/test.py
+      hash: md5
+      md5: df198beb437b331ead91620e21d2af6e
+      size: 1517
   make_dataset:
     cmd: python src/data/make_dataset.py
     deps:
