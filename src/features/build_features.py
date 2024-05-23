@@ -3,9 +3,10 @@
 """
 
 import os
-from typing import Tuple, List,  Dict, Any
-import yaml
+from typing import Tuple, List
 import pickle
+
+import yaml
 from ml_lib_remla.preprocessing import Preprocessing
 
 OUTPUT_PATH = os.path.join("data", "tokenized")
@@ -40,6 +41,7 @@ def load_dataset(data_path: str) -> Tuple[List[str], List[str]]:
 
     return raw_x, raw_y
 
+
 def preprocess():
     """Reads in the raw data for all the splits, preprocesses the raw data (tokenising the sentences and encoding the labels)
     and stores the preprocessed data.
@@ -49,7 +51,7 @@ def preprocess():
         params = yaml.safe_load(file)
 
     preprocessor = Preprocessing()
-    
+
     # Define the file names in lists
     data_files = ["train.txt", "test.txt", "val.txt"]
     output_files = ["train.pkl", "test.pkl", "val.pkl"]
@@ -63,9 +65,10 @@ def preprocess():
         # Save processed data to respective output files
         with open(os.path.join(OUTPUT_PATH, output_file), 'wb') as file:
             pickle.dump((x, y), file)
-        
+
     with open(os.path.join(OUTPUT_PATH, "char_index.pkl"), 'wb') as file:
         pickle.dump(preprocessor.tokenizer.word_index, file)
+
 
 if __name__ == "__main__":
     preprocess()
