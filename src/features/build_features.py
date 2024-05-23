@@ -59,12 +59,12 @@ def preprocess():
     # Loop over the datasets for processing
     for data_file, output_file in zip(data_files, output_files):
         raw_x, raw_y = load_dataset(data_path=os.path.join(params["dataset_dir"], data_file))
-        x = preprocessor.tokenize_batch(raw_x)
-        y = preprocessor.encode_label_batch(raw_y)
+        x_data = preprocessor.tokenize_batch(raw_x)
+        y_data = preprocessor.encode_label_batch(raw_y)
 
         # Save processed data to respective output files
         with open(os.path.join(OUTPUT_PATH, output_file), 'wb') as file:
-            pickle.dump((x, y), file)
+            pickle.dump((x_data, y_data), file)
 
     with open(os.path.join(OUTPUT_PATH, "char_index.pkl"), 'wb') as file:
         pickle.dump(preprocessor.tokenizer.word_index, file)
