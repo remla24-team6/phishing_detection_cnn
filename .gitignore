@@ -1,3 +1,5 @@
+__pycache__/
+*.py[cod]
 # Ignore virtual environments
 .env
 venv/*
@@ -7,6 +9,7 @@ venv/*
 data/
 /model
 */__pycache__
+
 venv/*
 # Ignore dvc
 .dvc/*
@@ -15,3 +18,8 @@ venv/*
 # Ignore other
 .idea/*
 *.pkl
+
+# Ignore pytest cache
+.pytest_cache/*
+
+.DS_Store
