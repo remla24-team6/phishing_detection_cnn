@@ -30,7 +30,6 @@ def timer(func: Callable) -> Callable:
     return wrapper
 
 
-
 @timer
 def predict_with_time(model, X_test: np.array) -> Tuple[np.array]:
     """Returns model output with the time
