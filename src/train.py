@@ -2,8 +2,12 @@
     Method to train the model.
 """
 import os
+import tensorflow as tf
+
 from models.model import build_cnn_model
 from common.utils import load_from_pickle_file, load_training_params, save_to_json_file
+
+
 
 MODEL_SAVE_PATH = "model"
 if not os.path.exists(MODEL_SAVE_PATH):
@@ -13,9 +17,10 @@ DEFAULT_DIRECTORY = "model/"
 DEFAULT_FILENAME = "model.keras"
 
 
-def train():
+def train(random_seed=42):
     """Loads the precrocessed data and performs the model training.
     """
+    tf.random.set_seed(random_seed)
     params = load_training_params()
     model = build_cnn_model(params=params)
     model.compile(
