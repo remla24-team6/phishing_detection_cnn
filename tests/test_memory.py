@@ -1,0 +1,25 @@
+import pytest
+import json
+import numpy as np
+
+from src.features import build_features
+from src import train
+from src.common import memory as mem
+
+MAX_MEMORY_USAGE = 250
+N_ITERATIONS = 1
+
+SKIP_MEMORY_TEST = True
+
+@pytest.mark.skipif(SKIP_MEMORY_TEST == True, reason="Takes 3 minutes to run.")
+def test_memory():
+    build_features.preprocess()
+
+    memory_usages = [mem.train_with_memory(train.train) for _ in range(N_ITERATIONS)]
+    print(memory_usages)
+    max_memory_usage = max(memory_usages)/1024.0/1024.0
+    assert max_memory_usage < MAX_MEMORY_USAGE, 'Maximum memory usage < 250 MByte.'
+
+if __name__ == "__main__":
+    pytest.main() 
+    pass

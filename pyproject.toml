@@ -22,7 +22,19 @@ tensorflow-io-gcs-filesystem = [
 ]
 ml-lib-remla = "^1.0.0"
 pylint = "^3.2.2"
+pytest = "^8.2.1"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core", "hatchling"]
+build-backend = "build.hatchling"
+
+[project]
+name = "PACKAGENAME"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+pythonpath = [
+    ".", "src",
+]
