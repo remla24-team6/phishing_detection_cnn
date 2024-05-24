@@ -26,7 +26,7 @@ pytest = "^8.2.1"
 
 [build-system]
 requires = ["poetry-core", "hatchling"]
-build-backend = "poetry.core.masonry.api"
+build-backend = "build.hatchling"
 
 [project]
 name = "PACKAGENAME"
@@ -34,4 +34,7 @@ name = "PACKAGENAME"
 [tool.pytest.ini_options]
 addopts = [
     "--import-mode=importlib",
+]
+pythonpath = [
+    ".", "src",
 ]
