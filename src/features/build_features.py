@@ -4,10 +4,10 @@
 
 import os
 from typing import Tuple, List
+import pickle
 
+import yaml
 from ml_lib_remla.preprocessing import Preprocessing
-
-from utils import io
 
 OUTPUT_PATH = os.path.join("data", "tokenized")
 
@@ -46,40 +46,28 @@ def preprocess():
     """Reads in the raw data for all the splits, preprocesses the raw data (tokenising the sentences and encoding the labels)
     and stores the preprocessed data.
     """
-    params = io.load_training_params()
+
+    with open('training_params.yaml', 'r') as file:
+        params = yaml.safe_load(file)
 
     preprocessor = Preprocessing()
 
-    raw_x_train, raw_y_train = load_dataset(
-        data_path=os.path.join(params["dataset_dir"], "train.txt")
-    )
-    raw_x_test, raw_y_test = load_dataset(
-        data_path=os.path.join(params["dataset_dir"], "test.txt")
-    )
-    raw_x_val, raw_y_val = load_dataset(
-        data_path=os.path.join(params["dataset_dir"], "val.txt")
-    )
+    # Define the file names in lists
+    data_files = ["train.txt", "test.txt", "val.txt"]
+    output_files = ["train.pkl", "test.pkl", "val.pkl"]
 
-    x_train = preprocessor.tokenize_batch(raw_x_train)
-    x_test = preprocessor.tokenize_batch(raw_x_test)
-    x_val = preprocessor.tokenize_batch(raw_x_val)
+    # Loop over the datasets for processing
+    for data_file, output_file in zip(data_files, output_files):
+        raw_x, raw_y = load_dataset(data_path=os.path.join(params["dataset_dir"], data_file))
+        x_data = preprocessor.tokenize_batch(raw_x)
+        y_data = preprocessor.encode_label_batch(raw_y)
 
-    y_train = preprocessor.encode_label_batch(raw_y_train)
-    y_test = preprocessor.encode_label_batch(raw_y_test)
-    y_val = preprocessor.encode_label_batch(raw_y_val)
+        # Save processed data to respective output files
+        with open(os.path.join(OUTPUT_PATH, output_file), 'wb') as file:
+            pickle.dump((x_data, y_data), file)
 
-    io.save_to_pickle_file(
-        obj=preprocessor.tokenizer.word_index, pickle_path=os.path.join(OUTPUT_PATH, "char_index.pkl")
-    )
-    io.save_to_pickle_file(
-        obj=(x_train, y_train), pickle_path=os.path.join(OUTPUT_PATH, "train.pkl")
-    )
-    io.save_to_pickle_file(
-        obj=(x_val, y_val), pickle_path=os.path.join(OUTPUT_PATH, "val.pkl")
-    )
-    io.save_to_pickle_file(
-        obj=(x_test, y_test), pickle_path=os.path.join(OUTPUT_PATH, "test.pkl")
-    )
+    with open(os.path.join(OUTPUT_PATH, "char_index.pkl"), 'wb') as file:
+        pickle.dump(preprocessor.tokenizer.word_index, file)
 
 
 if __name__ == "__main__":

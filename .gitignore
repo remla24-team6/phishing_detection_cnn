@@ -8,7 +8,10 @@ venv/*
 # Ignore data files
 data/
 /model
-*/__pycache__
+src/common/__pycache__/
+src/models/__pycache__/
+__pycache__
+
 
 venv/*
 # Ignore dvc

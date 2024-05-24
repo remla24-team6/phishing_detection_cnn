@@ -1,11 +1,10 @@
 """
 Create CNN model.
 """
-
+import pickle
 from typing import Any, Dict
 from keras.models import Sequential
 from keras.layers import Embedding, Conv1D, MaxPooling1D, Flatten, Dense, Dropout
-from utils import io
 
 
 def build_cnn_model(params: Dict[str, Any]) -> Sequential:
@@ -20,7 +19,8 @@ def build_cnn_model(params: Dict[str, Any]) -> Sequential:
 
     model = Sequential()
 
-    char_index = io.load_from_pickle_file(pickle_path="data/tokenized/char_index.pkl")
+    with open("data/tokenized/char_index.pkl", 'rb') as file:
+        char_index = pickle.load(file)
 
     voc_size = len(char_index.keys())
     print(f"voc_size: {voc_size}")

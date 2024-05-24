@@ -33,28 +33,33 @@ We opted to divide the pipeline into these stages because each one has a well-de
 
 To run the full data pipeline, use:
 
-```
+``` console
 dvc exp run
 ```
 Once the pipeline runs, you can see the results and the metrics by running
-```
+``` console
 dvc exp show
 ```
 To run pylint:
 
-```
+``` console
 pylint <file/dir> > reports/output.txt
-```
+``` 
 This should store the pylint output in `reports/output.txt`
 
 To run autopep8:
-```
+``` console
 autopep8 --in-place --aggressive --recursive <file/dir>
 ```
 
 To run flake8:
-```
+``` console
 flake8 <file/dir>
+```
+
+To run tests:
+``` console
+pytest tests/
 ```
 
 

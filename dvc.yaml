@@ -6,30 +6,30 @@ stages:
   make_dataset:
     cmd: python src/data/make_dataset.py
     deps:
-    - src/data/make_dataset.py
+      - src/data/make_dataset.py
     outs:
-    - "data/DL Dataset"
+      - "data/DL Dataset"
   preprocessing:
-    cmd: python src/build_features.py
+    cmd: python src/features/build_features.py
     deps:
-    - src/build_features.py
-    - src/utils/io.py
-    - "data/DL Dataset"
+      - src/features/build_features.py
+      - src/common/utils.py
+      - "data/DL Dataset"
     outs:
-    - data/tokenized
+      - data/tokenized
   train:
     cmd: python src/train.py
     deps:
-    - src/train.py
-    - src/utils/io.py
-    - src/model.py
-    - data/tokenized
+      - src/train.py
+      - src/common/utils.py
+      - src/models/model.py
+      - data/tokenized
     outs:
-    - model/model.keras
+      - model/model.keras
   test:
     cmd: python src/test.py
     deps:
-    - src/test.py
-    - src/utils/io.py
-    - data/tokenized
-    - model/model.keras
+      - src/test.py
+      - src/common/utils.py
+      - data/tokenized
+      - model/model.keras
