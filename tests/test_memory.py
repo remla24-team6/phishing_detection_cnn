@@ -22,4 +22,3 @@ def test_memory():
 
 if __name__ == "__main__":
     pytest.main() 
-    pass

@@ -37,4 +37,3 @@ def test_inference():
 
 if __name__ == "__main__":
     pytest.main()
-    pass

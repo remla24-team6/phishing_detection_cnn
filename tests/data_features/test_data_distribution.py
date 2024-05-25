@@ -18,4 +18,3 @@ def test_legitimate_ratio():
 
 if __name__ == "__main__":
     pytest.main()
-    pass
