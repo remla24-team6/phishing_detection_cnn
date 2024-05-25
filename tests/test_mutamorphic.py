@@ -59,7 +59,7 @@ def test_mutamorphic(dataset_raw_test, trained_model):
     y_pred_mutant = trained_model.predict(X_mutant_tokenized)
 
     failing_tests = check_failing_tests(y_pred_original, y_pred_mutant)
-    assert len(failing_tests) < len(y_orig)
+    assert len(failing_tests) < len(y_orig) // 10
 
 
     
