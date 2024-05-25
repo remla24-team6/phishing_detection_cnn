@@ -1,20 +1,15 @@
 import pytest
-import json
 import numpy as np
 from urllib.parse import urlparse, urlunparse
 import re
 from ml_lib_remla.preprocessing import Preprocessing
 
-from tensorflow.keras.models import load_model
-
-from tests.fixtures.fixtures import dataset_raw_test
+from tests.fixtures.fixtures import dataset_raw_test, trained_model
 
 import warnings
 warnings.filterwarnings('ignore')
 
 N_SAMPLES = 100
-MODEL_PATH = "./model/model.keras"
-
 TLD_LIST = ['.io', '.ai', '.dev']
 THRESHOLD = 0.5
 
@@ -48,7 +43,7 @@ def check_failing_tests(y_pred_original, y_pred_mutant):
     failing_tests = np.argwhere(labels_original != labels_mutant)
     return failing_tests
 
-def test_mutamorphic(dataset_raw_test):
+def test_mutamorphic(dataset_raw_test, trained_model):
     X_orig, y_orig = dataset_raw_test
 
     X_orig = X_orig[:N_SAMPLES]
@@ -60,9 +55,8 @@ def test_mutamorphic(dataset_raw_test):
     X_orig_tokenized = preprocessor.tokenize_batch(X_orig)
     X_mutant_tokenized = preprocessor.tokenize_batch(mutant_candidates)
 
-    model = load_model(MODEL_PATH)
-    y_pred_original = model.predict(X_orig_tokenized)
-    y_pred_mutant = model.predict(X_mutant_tokenized)
+    y_pred_original = trained_model.predict(X_orig_tokenized)
+    y_pred_mutant = trained_model.predict(X_mutant_tokenized)
 
     failing_tests = check_failing_tests(y_pred_original, y_pred_mutant)
     assert len(failing_tests) < len(y_orig)
