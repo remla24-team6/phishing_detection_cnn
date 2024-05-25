@@ -13,6 +13,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 N_SAMPLES = 100
+MODEL_PATH = "./model/model.keras"
+
 TLD_LIST = ['.io', '.ai', '.dev']
 THRESHOLD = 0.5
 
