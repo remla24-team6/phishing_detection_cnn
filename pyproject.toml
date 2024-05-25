@@ -18,7 +18,8 @@ dvc = "^3.50.1"
 dvc-gdrive = "^3.0.1"
 tensorflow-intel = { version = "^2.13.0", platform = "win32" }
 tensorflow-io-gcs-filesystem = [
-    { version = "< 0.32.0", markers = "platform_system == 'Windows'" }
+    {version = "< 0.32.0", platform ="win32"},
+    {platform = "darwin", version = "~0.36.0"}
 ]
 ml-lib-remla = "^1.0.0"
 pylint = "^3.2.2"
