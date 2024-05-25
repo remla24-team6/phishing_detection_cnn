@@ -13,11 +13,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 N_SAMPLES = 100
-MODEL_PATH = "./model/model.keras"
-X_TEST_PATH = "data/tokenized/test.pkl"
-
-SKIP_MEMORY_TEST = True
-
 TLD_LIST = ['.io', '.ai', '.dev']
 THRESHOLD = 0.5
 
