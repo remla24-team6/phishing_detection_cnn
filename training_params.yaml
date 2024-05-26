@@ -7,6 +7,6 @@ categories:
   - "phishing"
   - "legitimate"
 char_index: None
-epoch: 10
+epoch: 1
 embedding_dimension: 50
 dataset_dir: "data/DL Dataset/"
