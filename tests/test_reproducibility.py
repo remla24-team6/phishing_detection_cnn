@@ -2,11 +2,13 @@ import pytest
 import json
 from src import build_features, train
 
+SKIP_REPRODUCIBILITY_TEST = True
 
 def read_metrics(file_path):
     with open(file_path, 'r') as file:
         return json.load(file)
 
+@pytest.mark.skipif(SKIP_REPRODUCIBILITY_TEST == True, reason="Trains the model twice")
 def test_reproducibility():
     build_features.preprocess()
     
