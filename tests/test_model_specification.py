@@ -1,9 +1,3 @@
-# Create Checkpoints on training
-    # Ensure your model training script supports checkpointing.
-    # The model can restore from a checkpoint and continue training.
-
-# Get Loss history
-    # Training reduces the loss.
-
-# test restore from checkpoint
-
+# TODO. Not sure what tests to add
+# 1. Add Checkpoint Creation test
+# 2. Add Loss reduction check test

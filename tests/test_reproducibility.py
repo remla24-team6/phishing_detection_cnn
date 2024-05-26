@@ -1,6 +1,7 @@
 import pytest
 import json
-from src import build_features, train
+from src.features import build_features
+from src import train
 
 SKIP_REPRODUCIBILITY_TEST = True
 

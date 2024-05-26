@@ -94,7 +94,9 @@ def train():
         if not os.path.exists(DEFAULT_DIRECTORY):
             os.makedirs(DEFAULT_DIRECTORY)
 
+        print("Saving Model...")
         model.save(DEFAULT_DIRECTORY + DEFAULT_FILENAME)
+        print("Model Saved")
 
         metrics = {
             "train_accuracy": hist.history['accuracy'][0],
@@ -105,6 +107,7 @@ def train():
 
         save_to_json_file(metrics, "model/metrics.json")
         model.save("model/model.keras")
+
     except Exception as e:
         print(f"Training interrupted: {e}, Checkpoint saved.")
 
