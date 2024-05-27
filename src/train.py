@@ -1,11 +1,10 @@
 """
     Method to train the model.
 """
-
+from typing import Optional
 import os
 from models.model import build_cnn_model
 from common.utils import load_from_pickle_file, load_training_params, save_to_json_file
-from typing import Optional
 
 MODEL_SAVE_PATH = "model"
 if not os.path.exists(MODEL_SAVE_PATH):
@@ -15,7 +14,7 @@ DEFAULT_DIRECTORY = "model/"
 DEFAULT_FILENAME = "model.keras"
 
 
-def train(num_features: Optional[int]):
+def train(num_features: Optional[int] = 0):
     """Loads the precrocessed data and performs the model training.
     Args:
         num_features (int): Number of training features to train the model on.
