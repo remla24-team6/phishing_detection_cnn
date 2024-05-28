@@ -33,3 +33,11 @@ stages:
       - src/common/utils.py
       - data/tokenized
       - model/model.keras
+  pytest:
+    cmd: pytest tests/
+    deps:
+      - data
+      - model
+      - output
+      - src
+      - tests
