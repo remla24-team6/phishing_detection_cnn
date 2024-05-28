@@ -11,6 +11,8 @@ from src.common import utils
 MAX_SERVING_LATENCY = 0.001
 P_PERCENTILE = 0.99
 N_LATENCIES = 1
+MODEL_PATH = "./model/model.keras"
+X_TEST_PATH = "data/tokenized/test.pkl"
 
     
 SKIP_INFERENCE_TEST = True
@@ -23,17 +25,15 @@ def test_inference():
     # First training run
     train.train()
     
-    model_path = "./model/model.keras"
-    X_test_path = ""
-    model = load_model(model_path)
-    
-    X_test, _ = utils.load_from_pickle_file("data/tokenized/test.pkl")
+    model = load_model(MODEL_PATH)
+
+    X_test, _ = utils.load_from_pickle_file(X_TEST_PATH)
     
     latencies = np.array([t.predict_with_time(model, X_test)[1] for _ in range(N_LATENCIES)])
     avg_latencies = latencies / len(X_test) 
     avg_latency_p99 = np.quantile(avg_latencies, P_PERCENTILE)
+    
     assert avg_latency_p99 < MAX_SERVING_LATENCY, 'Serving latency at 99th percentile should be < 0.02 sec'
 
 if __name__ == "__main__":
     pytest.main()
-    pass
