@@ -1,11 +1,11 @@
-loss_function: 'binary_crossentropy'
-optimizer: 'adam'
+loss_function: "binary_crossentropy"
+optimizer: "adam"
 sequence_length: 200
 batch_train: 5000
 batch_test: 5000
 categories:
-  - 'phishing'
-  - 'legitimate'
+  - "phishing"
+  - "legitimate"
 char_index: None
 epoch: 1
 embedding_dimension: 50
