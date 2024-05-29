@@ -4,11 +4,10 @@
 from typing import Optional
 import os
 import json
-from models.model import build_cnn_model
-from common.utils import load_from_pickle_file, load_training_params, save_to_json_file
-
 from tensorflow.keras.callbacks import ModelCheckpoint, Callback
 from tensorflow.keras.models import load_model
+from models.model import build_cnn_model
+from common.utils import load_from_pickle_file, load_training_params, save_to_json_file
 
 
 MODEL_SAVE_PATH = "model"
@@ -20,26 +19,37 @@ DEFAULT_FILENAME = "model.keras"
 
 RESTORE_CHECKPOINT = True
 
-checkpoint_dir = 'checkpoints'
-epoch_file_path = os.path.join(checkpoint_dir, 'epoch.json')
-class EpochSaver(Callback):
+CHECKPOINT_DIR = 'checkpoints'
+EPOCH_FILE_DIR = os.path.join(CHECKPOINT_DIR, 'epoch.json')
+class EpochSaver(Callback): # pylint: disable=too-few-public-methods
+    # Disabled since tensorflow requires a class as a callback
+    """
+        Keras callback to save the current epoch number to a file at the end of each epoch.
+
+        This can be useful for resuming training from the last saved epoch in case of interruptions.
+    
+        Attributes: filepath (str): The file path where the epoch number will be saved.
+    """
     def __init__(self, filepath):
-        super(EpochSaver, self).__init__()
+        super().__init__()
         self.filepath = filepath
 
-    def on_epoch_end(self, epoch, logs=None):
+    def on_epoch_end(self, epoch):
+        """
+        Initialize the EpochSaver with the specified file path.
+
+        Args:
+            filepath (str): The file path where the epoch number will be saved.
+        """
         with open(self.filepath, 'w') as f:
             json.dump({'epoch': epoch + 1}, f)  # Save the next epoch to run
 
-
-"""Define checkpoint save location
-"""
-checkpoint_path = os.path.join(checkpoint_dir, 'model_checkpoint.keras')
-os.makedirs(checkpoint_dir, exist_ok=True)
+checkpoint_path = os.path.join(CHECKPOINT_DIR, 'model_checkpoint.keras')
+os.makedirs(CHECKPOINT_DIR, exist_ok=True)
 checkpoint_callback = ModelCheckpoint(
         filepath=checkpoint_path,
-        save_best_only=True,  
-        save_weights_only=False, 
+        save_best_only=True,
+        save_weights_only=False,
         monitor='val_loss',
         mode='min',
         verbose=1
@@ -64,8 +74,8 @@ def train(num_features: Optional[int] = 0):
     if RESTORE_CHECKPOINT and os.path.exists(checkpoint_path):
         print("Loading model from checkpoint.")
         model = load_model(checkpoint_path)
-        if os.path.exists(epoch_file_path):
-            with open(epoch_file_path, 'r') as f:
+        if os.path.exists(EPOCH_FILE_DIR):
+            with open(EPOCH_FILE_DIR, 'r') as f:
                 data = json.load(f)
                 initial_epoch = data.get('epoch', 0)
     else:
@@ -84,14 +94,13 @@ def train(num_features: Optional[int] = 0):
             epochs=params["epoch"],
             shuffle=True,
             validation_data=(x_val[:num_features], y_val[:num_features]),
-            callbacks=[checkpoint_callback, EpochSaver(epoch_file_path)]
+            callbacks=[checkpoint_callback, EpochSaver(EPOCH_FILE_DIR)]
         )
-        
         # If Training is a success, Delete all checkpoints.
         if os.path.exists(checkpoint_path):
             os.remove(checkpoint_path)
-            if os.path.exists(epoch_file_path):
-                os.remove(epoch_file_path)
+            if os.path.exists(EPOCH_FILE_DIR):
+                os.remove(EPOCH_FILE_DIR)
             print("Checkpoints deleted after successful training.")
 
         if not os.path.exists(DEFAULT_DIRECTORY):
@@ -110,7 +119,8 @@ def train(num_features: Optional[int] = 0):
 
         save_to_json_file(metrics, "model/metrics.json")
 
-    except Exception as e:
+    except Exception as e: # pylint: disable=broad-except
+        # Disable to cover any unexpected failure
         print(f"Training interrupted: {e}, Checkpoint saved.")
 
 
