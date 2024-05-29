@@ -21,13 +21,11 @@ RESTORE_CHECKPOINT = True
 
 CHECKPOINT_DIR = 'checkpoints'
 EPOCH_FILE_DIR = os.path.join(CHECKPOINT_DIR, 'epoch.json')
-class EpochSaver(Callback): # pylint: disable=too-few-public-methods
+class EpochSaver(Callback):  # pylint: disable=too-few-public-methods
     # Disabled since tensorflow requires a class as a callback
     """
         Keras callback to save the current epoch number to a file at the end of each epoch.
-
         This can be useful for resuming training from the last saved epoch in case of interruptions.
-    
         Attributes: filepath (str): The file path where the epoch number will be saved.
     """
     def __init__(self, filepath):
@@ -43,6 +41,7 @@ class EpochSaver(Callback): # pylint: disable=too-few-public-methods
         """
         with open(self.filepath, 'w') as file:
             json.dump({'epoch': epoch + 1}, file)  # Save the next epoch to run
+
 
 checkpoint_path = os.path.join(CHECKPOINT_DIR, 'model_checkpoint.keras')
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
@@ -119,10 +118,9 @@ def train(num_features: Optional[int] = 0):
 
         save_to_json_file(metrics, "model/metrics.json")
 
-    except Exception as error: # pylint: disable=broad-except
+    except Exception as error:  # pylint: disable=broad-except
         # Disable to cover any unexpected failure
         print(f"Training interrupted: {error}, Checkpoint saved.")
-
 
 
 if __name__ == "__main__":
