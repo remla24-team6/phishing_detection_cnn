@@ -11,6 +11,7 @@ from common.timer import predict_with_time
 
 N_SIZE_TESTDATA = 10000
 
+
 def test():
     """Performs the testing of the trained model.
     """
@@ -43,7 +44,6 @@ def test():
     metrics["roc_auc"] = roc_auc
     metrics["test size"] = len(X_test)
     metrics["inference time"] = time
-
 
     save_to_json_file(metrics, "reports/metrics.json")
 
