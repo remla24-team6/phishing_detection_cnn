@@ -23,73 +23,101 @@ stages:
       nfiles: 3
     - path: src/common/utils.py
       hash: md5
-      md5: a773d5dfa053238994641f7d5eb7a2b0
-      size: 2674
+      md5: 93c809d64ce81c6895e8458a454076ad
+      size: 2584
     - path: src/features/build_features.py
       hash: md5
-      md5: b9ace81a2f52c279d124f554458c38c2
-      size: 2616
+      md5: 3c554c12232c10789ac91070b8d3d430
+      size: 2544
     outs:
     - path: data/tokenized
       hash: md5
-      md5: 27bd978ea0da606850309c5808e7380a.dir
-      size: 1547742081
+      md5: c07d7f7bbabb3441977320b80dc2dc35.dir
+      size: 1555442387
       nfiles: 4
   train:
     cmd: python src/train.py
     deps:
     - path: data/tokenized
       hash: md5
-      md5: 27bd978ea0da606850309c5808e7380a.dir
-      size: 1547742081
+      md5: c07d7f7bbabb3441977320b80dc2dc35.dir
+      size: 1555442387
       nfiles: 4
     - path: src/common/utils.py
       hash: md5
-      md5: a773d5dfa053238994641f7d5eb7a2b0
-      size: 2674
+      md5: 93c809d64ce81c6895e8458a454076ad
+      size: 2584
     - path: src/models/model.py
       hash: md5
-      md5: eb5a9d11fae31b793c3bf15b443c0bcb
-      size: 1643
+      md5: 260a5dacc1c4206aa2c080bb635105a2
+      size: 1584
     - path: src/train.py
       hash: md5
-      md5: 3d4324c99ff0e60dba30a369e083328b
-      size: 1597
+      md5: 184aa3e12659748510d6a1b943ff194d
+      size: 1790
     outs:
     - path: model/model.keras
       hash: md5
-      md5: fed4b2f27a35d575086804d1090e2772
+      md5: 0021705bd3f37edbadcba215c157cdd5
       size: 5472435
   test:
     cmd: python src/test.py
     deps:
     - path: data/tokenized
       hash: md5
-      md5: 27bd978ea0da606850309c5808e7380a.dir
-      size: 1547742081
+      md5: c07d7f7bbabb3441977320b80dc2dc35.dir
+      size: 1555442387
       nfiles: 4
     - path: model/model.keras
       hash: md5
-      md5: fed4b2f27a35d575086804d1090e2772
+      md5: 0021705bd3f37edbadcba215c157cdd5
       size: 5472435
     - path: src/common/utils.py
       hash: md5
-      md5: a773d5dfa053238994641f7d5eb7a2b0
-      size: 2674
+      md5: 93c809d64ce81c6895e8458a454076ad
+      size: 2584
     - path: src/test.py
       hash: md5
-      md5: df198beb437b331ead91620e21d2af6e
-      size: 1517
+      md5: 322264f8c48f2ace81ba2c0a9df90681
+      size: 1472
   make_dataset:
     cmd: python src/data/make_dataset.py
     deps:
     - path: src/data/make_dataset.py
       hash: md5
-      md5: 20b6c639e46e1293b76935ff30c09a52
-      size: 802
+      md5: 5c865088d7abe34b694dc5147b5d0d68
+      size: 772
     outs:
     - path: data/DL Dataset
       hash: md5
       md5: 48900e618890f4ce97201d1592d45045.dir
       size: 172904892
       nfiles: 3
+  pytest:
+    cmd: pytest tests/
+    deps:
+    - path: data
+      hash: md5
+      md5: 9dc035fa5509fc4f915915d94ac39d3a.dir
+      size: 1728347279
+      nfiles: 7
+    - path: model
+      hash: md5
+      md5: 9ad51f4fc6b2b539688d2fbf4c44d867.dir
+      size: 5472574
+      nfiles: 2
+    - path: output
+      hash: md5
+      md5: b305c8a2428aaa85755e833d6f9a5d51.dir
+      size: 1560916681
+      nfiles: 8
+    - path: src
+      hash: md5
+      md5: 5459298051325b6343f3f9d93638bb91.dir
+      size: 41587
+      nfiles: 25
+    - path: tests
+      hash: md5
+      md5: 445ace274cdc79c78ec33d8a9c14fee4.dir
+      size: 21741
+      nfiles: 18
