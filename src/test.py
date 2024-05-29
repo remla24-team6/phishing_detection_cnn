@@ -6,19 +6,23 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from sklearn.metrics import accuracy_score, roc_auc_score, recall_score, f1_score, precision_score
 from common.utils import load_from_pickle_file, load_from_json_file, save_to_json_file
+from common.timer import predict_with_time
 
+
+N_SIZE_TESTDATA = 10000
 
 def test():
     """Performs the testing of the trained model.
     """
 
-    x_test, y_test = load_from_pickle_file("data/tokenized/test.pkl")
+    X_test, y_test = load_from_pickle_file("data/tokenized/test.pkl")
     model = load_model("model/model.keras")
 
-    y_pred = model.predict(x_test[:10000], batch_size=1000)
+    X_test = X_test[:N_SIZE_TESTDATA]
+    y_pred, time = predict_with_time(model, X_test)
 
     y_pred_binary = (np.array(y_pred) > 0.5).astype(int)
-    y_test = y_test[:10000].reshape(-1, 1)
+    y_test = y_test[:N_SIZE_TESTDATA].reshape(-1, 1)
 
     metrics = load_from_json_file("reports/metrics.json")
 
@@ -37,6 +41,9 @@ def test():
     roc_auc = roc_auc_score(y_test, y_pred_binary)
     print(f"Test roc_auc: {roc_auc}")
     metrics["roc_auc"] = roc_auc
+    metrics["test size"] = len(X_test)
+    metrics["inference time"] = time
+
 
     save_to_json_file(metrics, "reports/metrics.json")
 
