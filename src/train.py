@@ -73,7 +73,8 @@ def train(num_features: Optional[int] = 0):
 
     x_train, y_train = load_from_pickle_file(pickle_path="data/tokenized/train.pkl")
     x_val, y_val = load_from_pickle_file(pickle_path="data/tokenized/val.pkl")
-
+    if not num_features:
+        num_features = x_train.shape[0]
     try:
         hist = model.fit(
             x_train[:num_features],
@@ -82,7 +83,7 @@ def train(num_features: Optional[int] = 0):
             initial_epoch=initial_epoch,
             epochs=params["epoch"],
             shuffle=True,
-            validation_data=(x_val[:10000], y_val[:10000]),
+            validation_data=(x_val[:num_features], y_val[:num_features]),
             callbacks=[checkpoint_callback, EpochSaver(epoch_file_path)]
         )
         
