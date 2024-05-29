@@ -1,6 +1,7 @@
 """
     Method to train the model.
 """
+from typing import Optional
 import os
 import json
 from models.model import build_cnn_model
@@ -45,9 +46,10 @@ checkpoint_callback = ModelCheckpoint(
     )
 
 
-def train():
-    
+def train(num_features: Optional[int] = 0):
     """Loads the precrocessed data and performs the model training.
+    Args:
+        num_features (int): Number of training features to train the model on.
     """
     params = load_training_params()
     model = build_cnn_model(params=params)
@@ -74,8 +76,8 @@ def train():
 
     try:
         hist = model.fit(
-            x_train[:10000],
-            y_train[:10000],
+            x_train[:num_features],
+            y_train[:num_features],
             batch_size=params["batch_train"],
             initial_epoch=initial_epoch,
             epochs=params["epoch"],
@@ -106,7 +108,6 @@ def train():
         }
 
         save_to_json_file(metrics, "model/metrics.json")
-        model.save("model/model.keras")
 
     except Exception as e:
         print(f"Training interrupted: {e}, Checkpoint saved.")

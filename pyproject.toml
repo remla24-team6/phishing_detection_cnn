@@ -21,6 +21,9 @@ ml-lib-remla = "^1.0.0"
 pylint = "^3.2.2"
 pytest = "^8.2.1"
 
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.4"
+
 [build-system]
 requires = ["poetry-core", "hatchling"]
 build-backend = "hatchling.build"
