@@ -41,8 +41,8 @@ class EpochSaver(Callback): # pylint: disable=too-few-public-methods
         Args:
             filepath (str): The file path where the epoch number will be saved.
         """
-        with open(self.filepath, 'w') as f:
-            json.dump({'epoch': epoch + 1}, f)  # Save the next epoch to run
+        with open(self.filepath, 'w') as file:
+            json.dump({'epoch': epoch + 1}, file)  # Save the next epoch to run
 
 checkpoint_path = os.path.join(CHECKPOINT_DIR, 'model_checkpoint.keras')
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
@@ -75,8 +75,8 @@ def train(num_features: Optional[int] = 0):
         print("Loading model from checkpoint.")
         model = load_model(checkpoint_path)
         if os.path.exists(EPOCH_FILE_DIR):
-            with open(EPOCH_FILE_DIR, 'r') as f:
-                data = json.load(f)
+            with open(EPOCH_FILE_DIR, 'r') as file:
+                data = json.load(file)
                 initial_epoch = data.get('epoch', 0)
     else:
         print("No checkpoint found. Training new model.")
@@ -119,9 +119,9 @@ def train(num_features: Optional[int] = 0):
 
         save_to_json_file(metrics, "model/metrics.json")
 
-    except Exception as e: # pylint: disable=broad-except
+    except Exception as error: # pylint: disable=broad-except
         # Disable to cover any unexpected failure
-        print(f"Training interrupted: {e}, Checkpoint saved.")
+        print(f"Training interrupted: {error}, Checkpoint saved.")
 
 
 
