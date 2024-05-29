@@ -106,13 +106,13 @@ pytest tests/
 
 [![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=Accuracy&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/feedback/reports/metrics.json&query=test_accuracy)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json) 
 
-[![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=Precision&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/feedback/reports/metrics.json&query=avg_precision)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json) 
+[![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=Precision&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json&query=avg_precision)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json) 
 
-[![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=Recall&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/feedback/reports/metrics.json&query=avg_recall)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json)
+[![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=Recall&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json&query=avg_recall)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json)
 
-[![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=F-measure&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/feedback/reports/metrics.json&query=avg_f1)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json) 
+[![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=F-measure&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json&query=avg_f1)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json) 
 
-[![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=ROCAUC&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/feedback/reports/metrics.json&query=roc_auc)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json) 
+[![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=ROCAUC&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json&query=roc_auc)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json) 
 
 
 
