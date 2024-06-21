@@ -1,0 +1,33 @@
+name: Versioning
+
+on: push
+
+jobs:
+  versioning:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ github.token }}
+
+      - name: Increment version
+        run: |
+          TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+          echo "Current tag: $TAG"
+
+          NEW_TAG="${TAG%.*}.$((${TAG##*.}+1))"
+          echo "New tag: $NEW_TAG"
+
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+
+      - name: Create Git Tag
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag $NEW_TAG
+          git push origin $NEW_TAG
+
+      - name: Job Completed
+        run: echo "Job finished successfully!"
