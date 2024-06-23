@@ -22,12 +22,24 @@ jobs:
 
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
 
+      - name: Generate release tag
+        id: generate_release_tag
+        uses: alexvingg/next-release-tag@v1.0.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_prefix: $NEW_TAG
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ steps.generate_release_tag.outputs.release_tag }}
+          release_name: Release ${{ steps.generate_release_tag.outputs.release_tag }}
+
       - name: Create Git Tag
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git tag $NEW_TAG
-          git push origin $NEW_TAG
+          git push --tags
 
       - name: Job Completed
         run: echo "Job finished successfully!"
