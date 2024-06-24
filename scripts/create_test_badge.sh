@@ -13,6 +13,21 @@ else
 fi
 
 # Create the badge
-echo "![Test Status](https://img.shields.io/badge/tests-$RESULT-$COLOR)" > badge.svg
+BADGE_TEXT = "![Test Status](https://img.shields.io/badge/tests-$RESULT-$COLOR)" 
 
-git add badge.svg result.log
+# Temporary file to hold the new content
+TEMP_FILE=$(mktemp)
+
+# Write the badge text to the temp file
+echo "$BADGE_TEXT" > "$TEMP_FILE"
+
+# Add a newline after the badge
+echo "" >> "$TEMP_FILE"
+
+# Append the original README.md content to the temp file
+cat README.md >> "$TEMP_FILE"
+
+# Move the temp file to README.md, effectively updating it
+mv "$TEMP_FILE" README.md
+
+git add README.md
