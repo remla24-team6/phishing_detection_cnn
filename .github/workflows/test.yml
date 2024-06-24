@@ -1,15 +1,14 @@
 name: test
 
-on: 
+on:
   pull_request:
     branches:
-      - "main" 
+      - "main"
     paths:
       - ".github/workflows/test.yaml"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -46,7 +45,7 @@ jobs:
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
-      - name: Run tests
+      - name: Run tests > result.log
         run: |
           source .venv/bin/activate
           pytest tests/
