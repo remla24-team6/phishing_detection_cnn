@@ -13,7 +13,7 @@ else
 fi
 
 # Create the badge
-BADGE_TEXT = "![Test Status](https://img.shields.io/badge/tests-$RESULT-$COLOR)" 
+BADGE_TEXT="![Test Status](https://img.shields.io/badge/tests-$RESULT-$COLOR)" 
 
 # Temporary file to hold the new content
 TEMP_FILE=$(mktemp)

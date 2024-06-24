@@ -1,6 +1,7 @@
+![Test Status](https://img.shields.io/badge/tests-failing-red)
 
+![Test Status](https://img.shields.io/badge/tests-failing-red)
 
-![Test Status](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/Feature/test-adequacy/badge.svg)
 
 
 # Description
