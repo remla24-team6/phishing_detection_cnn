@@ -8,6 +8,7 @@
 ![Average Recall](https://img.shields.io/badge/avg_recall-1-blue)
 ![Average F1 Score](https://img.shields.io/badge/avg_f1-0.6184983076604269-blue)
 ![ROC AUC](https://img.shields.io/badge/roc_auc-0.5-blue)
+![Data Distribution Test](https://img.shields.io/badge/data_distribution-passing-brightgreen)
 
 # Description
 

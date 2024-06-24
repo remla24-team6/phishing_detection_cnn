@@ -3,6 +3,8 @@
 # Run tests and append output to result.log
 pytest tests/ >> result.log
 
+pytest tests/data_features/test_data_distribution.py >> test_data_distribution.log
+
 # Check if the test result contains "failed"
 if grep -q "failed" result.log; then
     RESULT="failing"
@@ -29,6 +31,18 @@ AVG_RECALL=$(echo "$METRICS" | jq -r '.avg_recall')
 AVG_F1=$(echo "$METRICS" | jq -r '.avg_f1')
 ROC_AUC=$(echo "$METRICS" | jq -r '.roc_auc')
 
+# Extract the legitimate ratio from the test output
+# Check if the test result contains "failed"
+if grep -q "failed" test_data_distribution.log; then
+    DATA_DISTRIBUTION_RESULT="failing"
+    DATA_DISTRIBUTION_RESULT_COLOR="red"
+else
+    DATA_DISTRIBUTION_RESULT="passing"
+    DATA_DISTRIBUTION_RESULT_COLOR="brightgreen"
+fi
+
+DATA_DISTRIBUTION_BADGE="![Data Distribution Test](https://img.shields.io/badge/data_distribution-$DATA_DISTRIBUTION_RESULT-$DATA_DISTRIBUTION_RESULT_COLOR)"
+
 # Create badges for each metric
 TRAIN_ACCURACY_BADGE="![Train Accuracy](https://img.shields.io/badge/train_accuracy-$TRAIN_ACCURACY-blue)"
 TRAIN_LOSS_BADGE="![Train Loss](https://img.shields.io/badge/train_loss-$TRAIN_LOSS-blue)"
@@ -53,6 +67,7 @@ sed '/!\[Test Accuracy\](https:\/\/img.shields.io\/badge\/test_accuracy-/d' |
 sed '/!\[Average Precision\](https:\/\/img.shields.io\/badge\/avg_precision-/d' |
 sed '/!\[Average Recall\](https:\/\/img.shields.io\/badge\/avg_recall-/d' |
 sed '/!\[Average F1 Score\](https:\/\/img.shields.io\/badge\/avg_f1-/d' |
+sed '/!\[Data Distribution Test\](https:\/\/img.shields.io\/badge\/data_distribution-/d' |
 sed '/!\[ROC AUC\](https:\/\/img.shields.io\/badge\/roc_auc-/d' > "$TEMP_FILE"
 
 
@@ -68,6 +83,7 @@ sed '/!\[ROC AUC\](https:\/\/img.shields.io\/badge\/roc_auc-/d' > "$TEMP_FILE"
     echo "$AVG_RECALL_BADGE"
     echo "$AVG_F1_BADGE"
     echo "$ROC_AUC_BADGE"
+    echo "$DATA_DISTRIBUTION_BADGE"
     cat "$TEMP_FILE"
 } > README.md
 
