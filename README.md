@@ -95,6 +95,14 @@ Below, we outline the decisions with regards to the set up and structure of our 
 
 ### Remote
 We configured a Google Drive folder as remote storage. It is accessible, [here](https://drive.google.com/drive/u/0/folders/1Bjf-9VYuLobnAYb6xvm_DwWWNlMuesrM).
+To modify the remote in DVC, use:
+```
+> dvc remote add --default myremote \
+                           gdrive://<gdrive-endpoint>
+> dvc remote modify myremote gdrive_acknowledge_abuse true
+> dvc push
+```
+
 
 ### Project structure
 We use the standard [Cookiecutter](https://drivendata.github.io/cookiecutter-data-science/) to ease the creation of directories and configuration files.
