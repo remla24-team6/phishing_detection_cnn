@@ -70,46 +70,6 @@ To run tests:
 pytest tests/
 ```
 
-
-### Project structure
-``` console
-│   .flake8
-│   .gitignore
-│   dvc.lock
-│   dvc.yaml
-│   poetry.lock
-│   pylintrc
-│   pyproject.toml
-│   README.md
-│   training_params.yaml
-│
-├───data
-│   ├───DL Dataset
-│   │       test.txt
-│   │       train.txt
-│   │       val.txt
-│   │
-│   └───tokenized
-│           char_index.pkl
-│           test.pkl
-│           train.pkl
-│           val.pkl
-│
-├───model
-│       metrics.json
-│       model.keras
-│
-└───src
-        get_data.py
-        model.py
-        preprocessing.py
-        test.py
-        train.py
-        utils.py
-        __init__.py
-```
-
-
 ### Model performance
 
 [![DVC-metrics](https://img.shields.io/badge/dynamic/json?style=flat-square&colorA=grey&colorB=99ff99&label=Accuracy&url=https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json&query=test_accuracy)](https://raw.githubusercontent.com/remla24-team6/phishing_detection_cnn/main/reports/metrics.json) 
@@ -128,8 +88,12 @@ pytest tests/
 
 Below, we outline the decisions with regards to the set up and structure of our project.
 
+
+### Remote
+We configured a Google Drive folder as remote storage. It is accessible, [here](https://drive.google.com/drive/u/0/folders/1Bjf-9VYuLobnAYb6xvm_DwWWNlMuesrM).
+
 ### Project structure
-We use the standard [Cookiecutter](https://drivendata.github.io/cookiecutter-data-science/) to ease the creation of directories and configuration filese.
+We use the standard [Cookiecutter](https://drivendata.github.io/cookiecutter-data-science/) to ease the creation of directories and configuration files.
 
 ### Package management
 We use [Poetry](https://python-poetry.org/) as our dependency management tool. Poetry ensures that users with different environments use the same versions of dependencies. 
@@ -140,9 +104,10 @@ We use [Pylint](https://pypi.org/project/pylint/) to check for errors in our cod
 Additionaly, we use flake8 as a linter as it also includes complexity analysis.
 
 #### Pylint configuration
-Pylint was configured to accept common ML naming (i.e., X_train, X_test). 
+We use Pylint to check for code quality. The configuration file can be found in `.pylintrc`. 
+Pylint was configured to accept common ML variable names (i.e., X_train, X_test). 
 
-##### Pylint code quality
+
 
 ```
 Report
@@ -244,8 +209,43 @@ Messages
 
 --------------------------------------------------------------------
 Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
-
-
-
 ```
 
+
+### Project structure
+``` console
+│   .flake8
+│   .gitignore
+│   dvc.lock
+│   dvc.yaml
+│   poetry.lock
+│   pylintrc
+│   pyproject.toml
+│   README.md
+│   training_params.yaml
+│
+├───data
+│   ├───DL Dataset
+│   │       test.txt
+│   │       train.txt
+│   │       val.txt
+│   │
+│   └───tokenized
+│           char_index.pkl
+│           test.pkl
+│           train.pkl
+│           val.pkl
+│
+├───model
+│       metrics.json
+│       model.keras
+│
+└───src
+        get_data.py
+        model.py
+        preprocessing.py
+        test.py
+        train.py
+        utils.py
+        __init__.py
+```
