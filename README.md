@@ -16,6 +16,14 @@ The pipeline is divided into four stages:
 Each of these stages has a respective file in the `src` folder. Furthermore, the `dvc.yaml` file describes the exact dependencies and outputs of these stages as well. 
 We opted to divide the pipeline into these stages because each one has a well-defined input and output and follows standard ML practices.
 
+# Prerequisites
+- Python
+        - Python `>= 3.11.*` or `< 3.12`.
+- Poetry
+        - Please, refer to the [official docs](https://python-poetry.org/docs/) for more information about Poetry. 
+- DVC
+        - Pleas, refer to the the [official docs](https://dvc.org/doc) for more informationa about DVC.
+
 # Setup
 - Create a new virtual environment called `env` using `virtualenv env`
 - Activate the virtual environment you just created using `source <path-to-env>/bin/activate`
