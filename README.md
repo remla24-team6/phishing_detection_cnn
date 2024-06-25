@@ -109,7 +109,7 @@ Additionaly, we use flake8 as a linter as it also includes complexity analysis.
 
 #### Pylint configuration
 We use Pylint to check for code quality. The configuration file can be found in `.pylintrc`. 
-Pylint was configured to accept common ML variable names (i.e., X_train, X_test). 
+Pylint was configured to accept variable names starting with a capital, such as X_train, X_test, because these are common ML variable names. 
 
 
 
