@@ -42,8 +42,8 @@ def test():
     roc_auc = roc_auc_score(y_test, y_pred_binary)
     print(f"Test roc_auc: {roc_auc}")
     metrics["roc_auc"] = roc_auc
-    metrics["test size"] = len(X_test)
-    metrics["inference time"] = time
+    metrics["test_size"] = len(X_test)
+    metrics["inference_time"] = time
 
     save_to_json_file(metrics, "reports/metrics.json")
 
