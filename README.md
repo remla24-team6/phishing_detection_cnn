@@ -2,7 +2,7 @@
 
 # Description
 
-This is the data pipeline repository for group 6 for CS4295-Release Engineering for Machine Learning Applications.
+This is the ml training pipeline repository for group 6 for CS4295-Release Engineering for Machine Learning Applications.
 
 # Pipeline design
 
@@ -222,6 +222,18 @@ Messages
 --------------------------------------------------------------------
 Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 ```
+# Testing Design
+We implemented the following tests:
+
+- Test data distribution: this test makes sure the training data has a reasonable proportion of legitimate and phishing URLs. This is important as unbalanced data can result in less correct prediction models.
+- Test data slice: Tests that the model predicts correctly for URLs containing `.com` and `.uk`. We test this to guarantee that the model has correct inference behavior on all kinds of URLs. 
+- Test model nondeterminism: Tests that train the model on different random seeds result in similar accuracy scores. Testing correctness in the face of non-determinism is tested as it makes our results predictable.
+- Test model-determinism: Tests that train the model on the same seed results in similar accuracy scores. We test model determinism to make sure the models are reliable and have predictable behavior.
+- Test inference: Tests if the trained model has acceptable serving latency. The inference time must be short because otherwise, our use-case is of significantly less value. 
+- Test memory: Tests that the memory usage does not exceed the set threshold. This test makes sure we make effective use of scarce memory resources.
+- Test mutamorphic properties: Tests that trained model return the same result for original and mutated URLs from the test set. Applies automatic inconsistency repair by training the model on failed mutated URLs. Our mutamorphic tests check for robustness to different URLs and repair the model where necessary to ensure high model correctness.
+
+All of these tests can be found in the `tests/` folder. They are triggered through the DVC pipeline.
 
 
 ### Project structure
