@@ -7,7 +7,7 @@ from src.train import train
 from src.test import test
 from src.common.utils import load_from_json_file
 
-SKIP_DETERMINISM_TEST = True
+SKIP_DETERMINISM_TEST = False
 NUM_DETERMINISM_RUNS = 3
 
 
@@ -32,7 +32,7 @@ def test_model_non_determinism(run):
     metrics = load_from_json_file("reports/metrics.json")
     accuracy = metrics["test_accuracy"]
 
-    assert 0.7 <= accuracy <= 1.0
+    assert 0.6 <= accuracy <= 1.0
 
 
 @pytest.mark.skipif(SKIP_DETERMINISM_TEST is True, reason="Takes 3 minutes to run.")

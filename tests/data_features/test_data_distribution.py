@@ -13,8 +13,10 @@ def test_legitimate_ratio():
                 phishing += 1
     total = legitimate + phishing
     legitimate_ratio = legitimate / total
+    print(f"legitimate_ratio={legitimate_ratio:.2f}")
     assert 0.4 < legitimate_ratio < 0.6
 
 
 if __name__ == "__main__":
-    pytest.main()
+    # pytest.main()
+    test_legitimate_ratio()
