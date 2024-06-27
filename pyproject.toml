@@ -21,7 +21,7 @@ tensorflow-io-gcs-filesystem = [
     {version = "< 0.32.0", platform ="win32"},
     {platform = "darwin", version = "~0.36.0"}
 ]
-ml-lib-remla = "1.1.4"
+ml-lib-remla = "1.0.0"
 pylint = "^3.2.2"
 pytest = "^8.2.1"
 

@@ -3,7 +3,17 @@
 # Run tests and append output to result.log
 pytest tests/ >> result.log
 
-pytest tests/data_features/test_data_distribution.py >> test_data_distribution.log
+# Extract the number of passed and failed tests from the result.log
+PASSED_TESTS=$(grep -oP '(?<=\s)\d+(?=\s+passed)' result.log)
+FAILED_TESTS=$(grep -oP '(?<=\s)\d+(?=\s+failed)' result.log)
+
+# Ensure default values if no tests were run
+PASSED_TESTS=${PASSED_TESTS:-0}
+FAILED_TESTS=${FAILED_TESTS:-0}
+
+# Calculate the total number of tests and adequacy score
+TOTAL_TESTS=$((PASSED_TESTS + FAILED_TESTS))
+ADEQUACY_SCORE=$(awk "BEGIN {printf \"%.2f\", $PASSED_TESTS/$TOTAL_TESTS}")
 
 # Check if the test result contains "failed"
 if grep -q "failed" result.log; then
@@ -16,6 +26,9 @@ fi
 
 # Create the test status badge
 BADGE_TEXT="![Test Status](https://img.shields.io/badge/tests-$RESULT-$COLOR)"
+
+# Create the adequacy score badge
+ADEQUACY_BADGE="![Adequacy Score](https://img.shields.io/badge/adequacy_score-$ADEQUACY_SCORE-blue)"
 
 # Read metrics from reports/metrics.json
 METRICS=$(cat reports/metrics.json)
@@ -68,12 +81,13 @@ sed '/!\[Average Precision\](https:\/\/img.shields.io\/badge\/avg_precision-/d' 
 sed '/!\[Average Recall\](https:\/\/img.shields.io\/badge\/avg_recall-/d' |
 sed '/!\[Average F1 Score\](https:\/\/img.shields.io\/badge\/avg_f1-/d' |
 sed '/!\[Data Distribution Test\](https:\/\/img.shields.io\/badge\/data_distribution-/d' |
-sed '/!\[ROC AUC\](https:\/\/img.shields.io\/badge\/roc_auc-/d' > "$TEMP_FILE"
-
+sed '/!\[ROC AUC\](https:\/\/img.shields.io\/badge\/roc_auc-/d' |
+sed '/!\[Adequacy Score\](https:\/\/img.shields.io\/badge\/adequacy_score-/d' > "$TEMP_FILE"
 
 # Prepend the new badges to README.md
 {
     echo "$BADGE_TEXT"
+    echo "$ADEQUACY_BADGE"
     echo "$TRAIN_ACCURACY_BADGE"
     echo "$TRAIN_LOSS_BADGE"
     echo "$VAL_ACCURACY_BADGE"
