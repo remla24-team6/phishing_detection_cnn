@@ -56,4 +56,5 @@ def build_cnn_model(params: Dict[str, Any]) -> Sequential:
 
     model.add(Dense(len(params["categories"]) - 1, activation="sigmoid"))
 
+    print("Model Ready...")
     return model
