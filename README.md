@@ -1,4 +1,4 @@
-![Test Status](https://img.shields.io/badge/tests-failing-brightgreen)
+![Test Status](https://img.shields.io/badge/tests-passing-brightgreen)
 ![Adequacy Score](https://img.shields.io/badge/adequacy_score-1.00-blue)
 ![Train Accuracy](https://img.shields.io/badge/train_accuracy-0.5084999799728394-blue)
 ![Train Loss](https://img.shields.io/badge/train_loss-0.6965246796607971-blue)
