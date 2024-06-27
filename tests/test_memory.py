@@ -8,7 +8,7 @@ from src.common import memory as mem
 from src.common.utils import load_training_params
 from functools import partial
 
-MAX_MEMORY_USAGE = 500
+MAX_MEMORY_USAGE = 250
 N_ITERATIONS = 1
 
 SKIP_MEMORY_TEST = False
