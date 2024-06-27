@@ -15,7 +15,7 @@ MODEL_PATH = "./model/model.keras"
 X_TEST_PATH = "data/tokenized/test.pkl"
 
     
-SKIP_INFERENCE_TEST = True
+SKIP_INFERENCE_TEST = False
 
 @pytest.mark.skipif(SKIP_INFERENCE_TEST == True, reason="Takes 3 minutes to run.")
 def test_inference():
@@ -23,7 +23,7 @@ def test_inference():
     build_features.preprocess()
 
     # First training run
-    train.train()
+    train.train(num_features=10)
     
     model = load_model(MODEL_PATH)
 

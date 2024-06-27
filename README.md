@@ -1,4 +1,15 @@
-
+![Test Status](https://img.shields.io/badge/tests-failing-red)
+![Adequacy Score](https://img.shields.io/badge/adequacy_score-0.92-blue)
+![Train Accuracy](https://img.shields.io/badge/train_accuracy-0.5084999799728394-blue)
+![Train Loss](https://img.shields.io/badge/train_loss-0.6965246796607971-blue)
+![Validation Accuracy](https://img.shields.io/badge/val_accuracy-0.45010000467300415-blue)
+![Validation Loss](https://img.shields.io/badge/val_loss-0.6957074999809265-blue)
+![Test Accuracy](https://img.shields.io/badge/test_accuracy-0.6022-blue)
+![Average Precision](https://img.shields.io/badge/avg_precision-0.7462981243830207-blue)
+![Average Recall](https://img.shields.io/badge/avg_recall-0.16886307795398706-blue)
+![Average F1 Score](https://img.shields.io/badge/avg_f1-0.2754098360655738-blue)
+![ROC AUC](https://img.shields.io/badge/roc_auc-0.5611651982201584-blue)
+![Data Distribution Test](https://img.shields.io/badge/data_distribution-passing-brightgreen)
 
 # Description
 

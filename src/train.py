@@ -85,6 +85,7 @@ def train(num_features: Optional[int] = 0):
     if not num_features:
         num_features = x_train.shape[0]
     try:
+        print("Model fitting now... with shape...", num_features)
         hist = model.fit(
             x_train[:num_features],
             y_train[:num_features],
@@ -95,6 +96,7 @@ def train(num_features: Optional[int] = 0):
             validation_data=(x_val[:num_features], y_val[:num_features]),
             callbacks=[checkpoint_callback, EpochSaver(EPOCH_FILE_DIR)]
         )
+        print("Model fitted...")
         # If Training is a success, Delete all checkpoints.
         if os.path.exists(checkpoint_path):
             os.remove(checkpoint_path)

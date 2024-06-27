@@ -14,7 +14,7 @@ def test_reproducibility():
     build_features.preprocess()
     
     # First training run
-    train.train()
+    train.train(num_features=10)
 
     # Read metrics from the first run
     file_path = 'model/metrics.json'
@@ -26,7 +26,7 @@ def test_reproducibility():
     val_loss_1 = metrics_1['val_loss']
 
     # Second training run
-    train.train()
+    train.train(num_features=10)
 
     # Read metrics from the second run
     metrics_2 = read_metrics(file_path)
